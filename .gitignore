@@ -10,6 +10,5 @@ app/bower_components
 www/
 ##########Platforms##########
 
-
 ##########iOS##########
 platforms/ios/cordova/console.log
