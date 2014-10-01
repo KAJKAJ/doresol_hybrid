@@ -8,7 +8,6 @@
  */
 angular
     .module('core')
-    .controller('HomeController', function($scope){
-    	// $scope.squares = [1,2,3];
-    	// console.log($scope);
+    .controller('HomeController', function($scope,$famous,$window,$timeout){
+    	
     });

@@ -16,6 +16,7 @@
     <!-- build:css styles/custom.css -->
         <!-- injector:css -->
         <link rel="stylesheet" href="css/customcordova.css" />
+        <link rel="stylesheet" href="css/main.css" />
         <!-- endinjector -->
     <!-- endbuild -->
   </head>
@@ -43,17 +44,16 @@
                 </h1>
             </div>
         </header> -->
-        <fa-app style="height: 500px;">
+        <!-- <fa-app style="height: 500px;"> -->
+
+        <fa-app class="main-wrapper">
           <section id="uiview" ui-view></section>
         </fa-app>
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <section id="uiview" ui-view></section>
-                </div>
-            </div>
+
+        <!-- <div resizable ng-style="{ width: windowWidth, height: windowHeight }" fa-app>
+          <section id="uiview" ui-view></section>
         </div> -->
-        <!-- /.container -->
+        
     </div>
     <!-- /.main -->
 
@@ -92,6 +92,7 @@
         <script src="js/application.js"></script>
         <script src="modules/core/core.js"></script>
         <script src="modules/core/config/routes.js"></script>
+        <script src="modules/core/directives/resizable.js"></script>
         <script src="modules/core/controllers/home.js"></script>
         <!-- endinjector -->
     <!-- endbuild -->
