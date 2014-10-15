@@ -7,7 +7,7 @@
  * @requires ng.$scope
  */
 angular
-    .module('core')
-    .controller('HomeController', function($scope,$famous,$window,$timeout){
-    	
-    });
+.module('core')
+.controller('HomeController', function($scope,ENV){
+	console.log(ENV);
+});

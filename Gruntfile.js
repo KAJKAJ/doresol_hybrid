@@ -7,7 +7,55 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
 
     grunt.initConfig({
-
+        ngconstant: {
+          // Options for all targets
+          options: {
+            space: '  ',
+            wrap: '"use strict";\n\n {%= __ngModule %}',
+            name: 'env',
+          },
+          // Environment targets
+          development: {
+            options: {
+              dest: 'app/js/env.js'
+            },
+            constants: {
+              ENV: {
+                name: 'development',
+                FIREBASE_URI: 'https://doresol-dev.firebaseio.com/',
+                GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
+                HOST: 'http://localhost:9876'
+              }
+            }
+          },
+          beta: {
+            options: {
+              dest: 'app/js/env.js'
+            },
+            constants: {
+              ENV: {
+                name: 'beta',
+                FIREBASE_URI: 'https://doresol-beta.firebaseio.com/',
+                GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
+                HOST: 'http://doresol.net'
+              }
+            }
+          },
+          production: {
+            options: {
+              dest: 'app/js/env.js'
+            },
+            constants: {
+              ENV: {
+                name: 'production',
+                FIREBASE_URI: 'https://doresol.firebaseio.com/',
+                GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
+                HOST: 'http://doresol.net'
+              }
+            }
+          }
+        },
+        
         yeoman: {
             app: 'app',
             temp: 'temp',
@@ -212,6 +260,7 @@ module.exports = function(grunt) {
             local_dependencies: {
                 files: {
                     'app/index.html': [
+                        'app/js/env.js',
                         'app/js/config.js',
                         'app/js/application.js',
                         'app/modules/*/*.js',
@@ -408,17 +457,29 @@ module.exports = function(grunt) {
         if (target === 'dist') {
             console.log('dist serve');
             return grunt.task.run(['build', 'connect:dist:keepalive']);
+        } else if (target == 'beta'){
+            grunt.task.run([
+                'clean:server',
+                'bowerInstall',
+                'ngconstant:beta',
+                'injector',
+                'concurrent:server',
+                'autoprefixer',
+                'connect:livereload',
+                'watch'
+            ]);
+        } else{
+            grunt.task.run([
+                'clean:server',
+                'bowerInstall',
+                'ngconstant:development',
+                'injector',
+                'concurrent:server',
+                'autoprefixer',
+                'connect:livereload',
+                'watch'
+            ]);
         }
-
-        grunt.task.run([
-            'clean:server',
-            'bowerInstall',
-            'injector',
-            'concurrent:server',
-            'autoprefixer',
-            'connect:livereload',
-            'watch'
-        ]);
     });
 
     grunt.registerTask('server', function(target) {
@@ -444,6 +505,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'bowerInstall',
+        'ngconstant:beta',
         'ngdocs',
         'injector',
         'useminPrepare',
