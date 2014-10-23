@@ -264,6 +264,7 @@ module.exports = function(grunt) {
                         'app/js/config.js',
                         'app/js/application.js',
                         'app/modules/*/*.js',
+                        'app/modules/*/components/**/*.js',
                         'app/modules/*/config/*.js',
                         'app/modules/*/services/*.js',
                         'app/modules/*/directives/*.js',
@@ -290,6 +291,7 @@ module.exports = function(grunt) {
                     src: [
                         '<%= yeoman.dist %>/app/js/*.js',
                         '<%= yeoman.dist %>/app/modules/*/*.js',
+                        'app/modules/*/components/**/*.js',
                         '<%= yeoman.dist %>/app/modules/*/config/*.js',
                         '<%= yeoman.dist %>/app/modules/*/services/*.js',
                         '<%= yeoman.dist %>/app/modules/*/directives/*.js',

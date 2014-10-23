@@ -8,6 +8,28 @@
  */
 angular
 .module('core')
-.controller('HomeController', function($scope,ENV){
-	console.log(ENV);
+.controller('HomeController', function($scope,ENV,$firebase){
+	// $scope.memorials = [];
+
+  // var memorialsRef = new Firebase(ENV.FIREBASE_URI + '/memorials');
+  
+  // var _memorails = $firebase(memorialsRef).$asArray();
+
+  // _memorails.$watch(function(event){
+  //   switch(event.event){
+  //     case "child_removed":
+  //     break;
+  //     case "child_added":
+  //       // $scope.memorials.push()
+  //       var memorialRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + event.key);
+  // 			var _memorial = $firebase(memorialRef).$asObject();
+  			
+  // 			_memorial.$loaded().then(function(value){
+  // 				// value = setMemorialSummary(value);
+  // 				$scope.memorials[value.$id] = value;
+  // 				console.log($scope.memorials);
+  // 			});
+  //     break;
+  //   }
+  // });
 });
