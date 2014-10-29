@@ -8,7 +8,8 @@
  */
 angular
 .module('core')
-.controller('HomeController', function($scope,ENV,$firebase){
+.controller('HomeController', function($scope,ENV,$firebase, Auth){
+  // Auth.logout();
 	// $scope.memorials = [];
 
   // var memorialsRef = new Firebase(ENV.FIREBASE_URI + '/memorials');
