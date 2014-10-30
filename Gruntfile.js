@@ -24,7 +24,8 @@ module.exports = function(grunt) {
                 name: 'development',
                 FIREBASE_URI: 'https://doresol-dev.firebaseio.com/',
                 GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
-                HOST: 'http://localhost:9876'
+                HOST: 'http://localhost:9876',
+                MEMORIAL_KEY:'-JZ7gqIDugLV4H57tRNg'
               }
             }
           },
@@ -37,7 +38,8 @@ module.exports = function(grunt) {
                 name: 'beta',
                 FIREBASE_URI: 'https://doresol-beta.firebaseio.com/',
                 GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
-                HOST: 'http://doresol.net'
+                HOST: 'http://doresol.net',
+                MEMORIAL_KEY:'-JWg83I6imBHVjgQs87P'
               }
             }
           },
@@ -50,7 +52,8 @@ module.exports = function(grunt) {
                 name: 'production',
                 FIREBASE_URI: 'https://doresol.firebaseio.com/',
                 GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
-                HOST: 'http://doresol.net'
+                HOST: 'http://doresol.net',
+                MEMORIAL_KEY:'-JZ7gqIDugLV4H57tRNg'
               }
             }
           }

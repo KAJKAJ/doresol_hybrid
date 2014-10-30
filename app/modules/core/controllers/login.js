@@ -3,48 +3,40 @@
 angular
 .module('core')
 .controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite) {
+    $scope.loginUser = {};
+    
     $scope.loginOauth = function(provider) {
       Auth.loginOauth(provider).then(function(value){
-        console.log('login oauth');
-        // Memorial.clearMyMemorial();
-        // Composite.setMyMemorials(value.uid).then(function(){
-        //   if ($state.params.memorialId !== undefined) {
-        //     $state.params.inviteeId = value.uid;
-        //     Composite.addMember($state.params).then(function(){
-            
-        //      if($rootScope.modalOpen) {
-        //       $scope.closeThisDialog('true');
-        //       $rootScope.modalOpen = false;
-        //      }
-             
-        //      if($rootScope.toState) {
-        //       $rootScope.toParams.noPopUp = noPopUp;
-        //       var tempState = $rootScope.toState;
-        //       $rootScope.toState = null;
-        //       $state.go(tempState, $rootScope.toParams);
-        //      } else {
-        //       $state.go("memorials", {noPopUp: noPopUp});
-        //      }
-        //     });
-
-        //   } else {
-            
-        //     if($rootScope.modalOpen) {
-        //       $scope.closeThisDialog('true');
-        //       $rootScope.modalOpen = false;
-        //     }
-
-        //     if($rootScope.toState) {
-        //      $rootScope.toParams.noPopUp = noPopUp;
-        //       var tempState = $rootScope.toState;
-        //       $rootScope.toState = null;             
-        //      $state.go(tempState, $rootScope.toParams);
-        //     } else {
-        //      $state.go("memorials", {noPopUp: noPopUp});
-        //     }
-        //   }
-        // });
+        Memorial.clearMyMemorial();
+        $state.go("profile");
       });
     }
+
+    $scope.login = function(form) {
+      $scope.loginErrors = '';
+      if(form.$valid) {
+        Auth.login({
+          email: $scope.loginUser.email,
+          password: $scope.loginUser.password
+        })
+        .then( function (value){
+          Memorial.clearMyMemorial();
+          $state.go("profile");
+        } ,function(error){
+          console.log(error);
+          var errorCode = error.code;
+          switch(errorCode){
+            case "INVALID_EMAIL":
+            case "INVALID_USER":
+              $scope.loginErrors = "등록되어있지 않은 이메일 주소입니다.";
+            break;
+            case "INVALID_PASSWORD":
+              $scope.loginErrors = "잘못된 패스워드입니다.";
+            break;
+          }
+          console.log($scope.loginErrors);
+        });        
+      }
+    };
 
   });

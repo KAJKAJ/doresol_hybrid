@@ -13,7 +13,7 @@ angular
         '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
 
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/profile');
 
             /**
              * @ngdoc event
@@ -26,10 +26,10 @@ angular
              * - When the path is `'/'`, route to home
              * */
             $stateProvider
-              .state('home', {
-                url: '/',
-                templateUrl: 'modules/core/views/home.html',
-                controller: 'HomeController',
+              .state('profile', {
+                url: '/profile',
+                templateUrl: 'modules/core/views/profile.html',
+                controller: 'ProfileCtrl',
                 authenticate: true
               })
               .state('login', {

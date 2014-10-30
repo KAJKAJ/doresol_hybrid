@@ -5,18 +5,21 @@
 		        <div>
 		          <div class="well">
 		            <span class="btn btn-block btn-info" ng-click="loginOauth('facebook')"><i class="fa fa-facebook"></i> 페이스북으로 로그인</span>
-		              <span style="color:gray;font-size:10px;">OR</span>
+		              <span style="color:gray;font-size:10px;">또는 이메일로 로그인</span>
 		            <form class="form" name="loginForm" ng-submit="login(loginForm)" novalidate>
-		                <input type="text" name="email" placeholder="email" class="form-control" ng-model="loginUser.email">
-		                <input type="password" name="password" placeholder="password" class="form-control" ng-model="loginUser.password">
-		                <button class="btn btn-success btn-block btn-login" type="submit">
+		                <input type="email" name="email" placeholder="email을 입력하세요" class="form-control" ng-model="loginUser.email" ng-required="true">
+		                <p class="help-block" ng-show="loginForm.email.$error.email">
+				              유효한 이메일 주소가 아닙니다.
+				            </p>
+		                <input type="password" name="password" placeholder="password" class="form-control" ng-model="loginUser.password" ng-required="true"> 
+		                <button class="btn btn-success btn-block btn-login" type="submit" ng-disabled="loginForm.$invalid">
 		                 로그인
 		                </button>
 		              <div class="form-group has-error">
 		                <p class="help-block" ng-show="loginForm.email.$error.required && loginForm.password.$error.required && loginSubmitted">
-		                   Please enter your email and password.
+		                   이메일 주소와 암호를 넣어주세요.
 		                </p>
-		                <p class="help-block">{{ loginErrors.other }}</p>
+		                <p class="help-block">{{loginErrors}}</p>
 		              </div>
 		            </form>
 		          </div>
@@ -34,10 +37,10 @@
 		                   required
 		                   firebase-error/>
 		            <p class="help-block" ng-show="signupForm.email.$error.email && signupSubmitted">
-		              Doesn't look like a valid email.
+		              유효한 이메일 주소가 아닙니다.
 		            </p>
 		            <p class="help-block" ng-show="signupForm.email.$error.required && signupSubmitted">
-		              What's your email address?
+		              이메일을 입력해주세요.
 		            </p>
 		            <p class="help-block" ng-show="signupForm.email.$error.firebase">
 		              {{ singupErrors.email }}
@@ -51,7 +54,7 @@
 		                   firebase-error/>
 		            <p class="help-block"
 		               ng-show="(signupForm.password.$error.minlength || signupForm.password.$error.required) && signupSubmitted">
-		              Password must be at least 3 characters.
+		              암호는 3글자 이상이여야 합니다.
 		            </p>
 		            <p class="help-block" ng-show="signupForm.password.$error.mongoose">
 		              {{ singupErrors.password }}

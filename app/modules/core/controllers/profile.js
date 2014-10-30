@@ -8,7 +8,7 @@
  */
 angular
 .module('core')
-.controller('HomeController', function($scope,ENV,$firebase, Auth){
+.controller('ProfileCtrl', function($scope,ENV,$firebase, Auth){
   // Auth.logout();
 	// $scope.memorials = [];
 
