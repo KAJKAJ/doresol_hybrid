@@ -33,36 +33,28 @@
 		        <form class="form" name="signupForm" ng-submit="signup(signupForm)" novalidate>
 		          <div class="form-group" ng-class="{ 'has-success': signupForm.email.$valid && signupSubmitted,
 		                                              'has-error': signupForm.email.$invalid && signupSubmitted }">
-		            <input type="email" name="email" placeholder="email을 입력하세요" class="form-control" ng-model="signupUser.email"
-		                   required
-		                   firebase-error/>
-		            <p class="help-block" ng-show="signupForm.email.$error.email && signupSubmitted">
+		            <input type="email" name="email" placeholder="email을 입력하세요" class="form-control" ng-model="signupUser.email" ng-required="true"/>
+		            <p class="help-block" ng-show="signupForm.email.$error.email">
 		              유효한 이메일 주소가 아닙니다.
-		            </p>
-		            <p class="help-block" ng-show="signupForm.email.$error.required && signupSubmitted">
-		              이메일을 입력해주세요.
-		            </p>
-		            <p class="help-block" ng-show="signupForm.email.$error.firebase">
-		              {{ singupErrors.email }}
 		            </p>
 		          </div>
 		          <div ng-class="{ 'has-success': signupForm.password.$valid && signupSubmitted,
 		                                              'has-error': signupForm.password.$invalid && signupSubmitted }">
-		            <input type="password" placeholder="password" name="password" class="form-control" ng-model="signupUser.password"
-		                   ng-minlength="3"
-		                   required
-		                   firebase-error/>
+		            <input type="password" placeholder="password" name="password" class="form-control" ng-model="signupUser.password" ng-minlength="3" ng-required="true"/>
 		            <p class="help-block"
-		               ng-show="(signupForm.password.$error.minlength || signupForm.password.$error.required) && signupSubmitted">
+		               ng-show="(signupForm.password.$error.minlength || signupForm.password.$error.required)">
 		              암호는 3글자 이상이여야 합니다.
 		            </p>
-		            <p class="help-block" ng-show="signupForm.password.$error.mongoose">
-		              {{ singupErrors.password }}
-		            </p>
 		          </div>
-		            <button class="btn btn-success btn-block btn-login" type="submit">
-		              가입하기
-		            </button>
+	            <button class="btn btn-success btn-block btn-login" type="submit" ng-disabled="signupForm.$invalid">
+	              가입하기
+	            </button>
+	            <div class="form-group has-error">
+                <p class="help-block" ng-show="signupForm.email.$error.required && signupForm.password.$error.required && signupSubmitted">
+                   이메일 주소와 암호를 넣어주세요.
+                </p>
+                <p class="help-block">{{signupErrors}}</p>
+              </div>
 		        </form>
 		      </div>
 		    </div>

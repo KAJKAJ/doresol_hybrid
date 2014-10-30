@@ -4,6 +4,7 @@ angular
 .module('core')
 .controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite) {
     $scope.loginUser = {};
+    $scope.signupUser = {};
     
     $scope.loginOauth = function(provider) {
       Auth.loginOauth(provider).then(function(value){
@@ -12,10 +13,8 @@ angular
       });
     }
 
-    $scope.login = function(form) {
-      $scope.loginErrors = '';
-      if(form.$valid) {
-        Auth.login({
+    var _login = function(){
+      Auth.login({
           email: $scope.loginUser.email,
           password: $scope.loginUser.password
         })
@@ -35,7 +34,30 @@ angular
             break;
           }
           console.log($scope.loginErrors);
-        });        
+        });  
+    }
+
+    $scope.login = function(form) {
+      $scope.loginErrors = '';
+      _login();
+    }
+
+    $scope.signup = function(form) {
+      $scope.signupErrors = '';
+      if(form.$valid) {
+        Auth.register($scope.signupUser).then(function (value){
+          $scope.loginUser.email = $scope.signupUser.email;
+          $scope.loginUser.password = $scope.signupUser.password;
+          _login();
+        }, function(error){
+          var errorCode = error.code;
+          console.log(error);
+          switch(errorCode){
+            case "EMAIL_TAKEN":
+              $scope.signupErrors = '이미 등록된 이메일 주소입니다.';
+            break;
+          }
+        });
       }
     };
 

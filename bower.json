@@ -16,6 +16,7 @@
     "angular-ui-router": "~0.2.10",
     "famous-angular": "~0.4.0",
     "angularfire": "~0.8.2",
-    "font-awesome": "~4.2.0"
+    "font-awesome": "~4.2.0",
+    "moment": "~2.8.3"
   }
 }
