@@ -54,6 +54,9 @@
       }
     });
 
+    //set current memorial
+    Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
+    
     dfd.resolve(true);
     return dfd.promise;
   };

@@ -61,11 +61,14 @@
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/plugins \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/scripts \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/styles \
+/Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/img/green_icon.png \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/img/loaders \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/img/loaders/loader.gif \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/modules/core \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/modules/core/views \
-/Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/modules/core/views/home.html \
+/Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/modules/core/views/login.html \
+/Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/modules/core/views/navbar.html \
+/Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/modules/core/views/profile.html \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/plugins/org.apache.cordova.camera \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/plugins/org.apache.cordova.contacts \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/assets/www/plugins/org.apache.cordova.device \

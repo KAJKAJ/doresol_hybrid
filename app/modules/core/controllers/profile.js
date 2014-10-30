@@ -8,29 +8,31 @@
  */
 angular
 .module('core')
-.controller('ProfileCtrl', function($scope,ENV,$firebase, Auth){
-  // Auth.logout();
-	// $scope.memorials = [];
+.controller('ProfileCtrl', function($scope,ENV,$firebase,$famous, Memorial, User){
+  var EventHandler = $famous['famous/core/EventHandler'];
+  $scope.eventHandler = new EventHandler();
+  $scope.options = {
+    scrollViewOuter: {
+      direction: 0,
+      paginated: true
+    },
+    scrollViewInner :{
+      direction: 1
+    }
+  };
+    
+  $scope.memorial = Memorial.getCurrentMemorial();
+  $scope.user = User.getCurrentUser();
 
-  // var memorialsRef = new Firebase(ENV.FIREBASE_URI + '/memorials');
-  
-  // var _memorails = $firebase(memorialsRef).$asArray();
+  $scope.copyMemorial = {};
+  $scope.memorial.$loaded().then(function(value){
+    // console.log($scope.memorial);
+    $scope.memorial.file.url = ENV.HOST + $scope.memorial.file.url;
+    angular.copy($scope.memorial,$scope.copyMemorial);
 
-  // _memorails.$watch(function(event){
-  //   switch(event.event){
-  //     case "child_removed":
-  //     break;
-  //     case "child_added":
-  //       // $scope.memorials.push()
-  //       var memorialRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + event.key);
-  // 			var _memorial = $firebase(memorialRef).$asObject();
-  			
-  // 			_memorial.$loaded().then(function(value){
-  // 				// value = setMemorialSummary(value);
-  // 				$scope.memorials[value.$id] = value;
-  // 				console.log($scope.memorials);
-  // 			});
-  //     break;
-  //   }
-  // });
+    $scope.isOwner = Memorial.isOwner();
+    $scope.isMember = Memorial.isMember();
+    $scope.isGuest = Memorial.isGuest();
+  });
+
 });

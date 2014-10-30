@@ -11,7 +11,7 @@ module.exports = function(grunt) {
           // Options for all targets
           options: {
             space: '  ',
-            wrap: '"use strict";\n\n {%= __ngModule %}',
+            wrap: '\'use strict\';\n\n {%= __ngModule %}',
             name: 'env',
           },
           // Environment targets
@@ -36,6 +36,10 @@ module.exports = function(grunt) {
             constants: {
               ENV: {
                 name: 'beta',
+                // FIREBASE_URI: 'https://doresol-beta.firebaseio.com/',
+                // GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
+                // HOST: 'http://doresol.net',
+                // MEMORIAL_KEY:'-JWg83I6imBHVjgQs87P'
                 FIREBASE_URI: 'https://doresol-beta.firebaseio.com/',
                 GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
                 HOST: 'http://doresol.net',
@@ -294,7 +298,7 @@ module.exports = function(grunt) {
                     src: [
                         '<%= yeoman.dist %>/app/js/*.js',
                         '<%= yeoman.dist %>/app/modules/*/*.js',
-                        'app/modules/*/components/**/*.js',
+                        '<%= yeoman.dist %>/app/modules/*/components/**/*.js',
                         '<%= yeoman.dist %>/app/modules/*/config/*.js',
                         '<%= yeoman.dist %>/app/modules/*/services/*.js',
                         '<%= yeoman.dist %>/app/modules/*/directives/*.js',
@@ -510,7 +514,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'bowerInstall',
-        'ngconstant:beta',
+        'ngconstant:development',
         'ngdocs',
         'injector',
         'useminPrepare',
@@ -524,7 +528,7 @@ module.exports = function(grunt) {
         'rev',
         'usemin',
         'htmlmin',
-        'comments:dist'
+        // 'comments:dist'
     ]);
 
     grunt.registerTask('default', [

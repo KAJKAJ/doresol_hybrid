@@ -8,19 +8,24 @@ angular
     
     $scope.loginOauth = function(provider) {
       Auth.loginOauth(provider).then(function(value){
-        Memorial.clearMyMemorial();
-        $state.go("profile");
+        _afterLogin(value.uid);
       });
     }
 
+    var _afterLogin = function(userId){
+      Memorial.clearMyMemorial();
+      $state.go("profile");
+    }
+
     var _login = function(){
+      console.log('login');
       Auth.login({
           email: $scope.loginUser.email,
           password: $scope.loginUser.password
         })
         .then( function (value){
-          Memorial.clearMyMemorial();
-          $state.go("profile");
+          console.log(value);
+          _afterLogin(value.uid);
         } ,function(error){
           console.log(error);
           var errorCode = error.code;
@@ -33,7 +38,7 @@ angular
               $scope.loginErrors = "잘못된 패스워드입니다.";
             break;
           }
-          console.log($scope.loginErrors);
+          // console.log($scope.loginErrors);
         });  
     }
 
