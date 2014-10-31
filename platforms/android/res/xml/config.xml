@@ -45,4 +45,8 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <access origin="https://firebaseio.com" />
+    <access origin="https://auth.firebase.com" />
+    <access origin="http://firebaseio.com" />
+    <access origin="http://auth.firebase.com" />
 </widget>

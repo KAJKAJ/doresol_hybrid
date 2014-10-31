@@ -2,7 +2,7 @@
 
 angular
 .module('core')
-.controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite) {
+.controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite, ENV) {
     $scope.loginUser = {};
     $scope.signupUser = {};
     
@@ -14,11 +14,13 @@ angular
 
     var _afterLogin = function(userId){
       Memorial.clearMyMemorial();
+      //set current memorial
+      Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
       $state.go("profile");
     }
 
     var _login = function(){
-      console.log('login');
+      console.log('email login clicked');
       Auth.login({
           email: $scope.loginUser.email,
           password: $scope.loginUser.password
