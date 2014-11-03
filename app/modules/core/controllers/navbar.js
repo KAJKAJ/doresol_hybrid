@@ -27,26 +27,28 @@ angular.module('core')
     
     $scope.currentUser = User.getCurrentUser();
 
-    if(!$scope.currentUser){
-      Auth.getCurrentUserFromFirebase().then(function(AuthValue){
-        if(AuthValue){
-          // console.log(AuthValue);
-          User.getCurrentUserFromFirebase(AuthValue.uid).then(function(userValue){
-            // console.log(userValue);
-            Composite.setMyMemorials(userValue.uid);
-            $scope.currentUser = User.getCurrentUser();
-          });
-        }
-      }, function(error){
-        console.log('auth error');
-      });
-    }
+    // if(!$scope.currentUser){
+    //   Auth.getCurrentUserFromFirebase().then(function(AuthValue){
+    //     if(AuthValue){
+    //       // console.log(AuthValue);
+    //       User.getCurrentUserFromFirebase(AuthValue.uid).then(function(userValue){
+    //         // console.log(userValue);
+    //         Composite.setMyMemorials(userValue.uid);
+    //         $scope.currentUser = User.getCurrentUser();
+    //       });
+    //     }
+    //   }, function(error){
+    //     console.log('auth error');
+    //   });
+    // }
     
     $scope.logout = function() {
       Auth.logout();
       $scope.currentUser = null;
-      $scope.toggle();
-      
+      User.setCurrentUser();
+      // $state.go("profile");
+
+      // $scope.toggle();
       $location.path('/login');
     }
 

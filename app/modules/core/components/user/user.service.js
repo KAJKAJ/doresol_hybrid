@@ -121,7 +121,7 @@ angular.module('doresolApp')
     findById: findById,
     createMemorial: createMemorial,
     getCurrentUser:getCurrentUser,
-    // setCurrentUser:setCurrentUser,
+    setCurrentUser:setCurrentUser,
     clearCurrentUser:clearCurrentUser,
     getCurrentUserFromFirebase:getCurrentUserFromFirebase,
     update:update,
