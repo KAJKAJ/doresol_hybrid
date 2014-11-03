@@ -2,7 +2,7 @@
 
 angular
 .module('core')
-.controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite, ENV) {
+.controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite, ENV, $famous) {
     $scope.loginUser = {};
     $scope.signupUser = {};
     
@@ -67,5 +67,8 @@ angular
         });
       }
     };
+
+    var EventHandler = $famous['famous/core/EventHandler'];
+    $scope.eventHandler = new EventHandler();
 
   });
