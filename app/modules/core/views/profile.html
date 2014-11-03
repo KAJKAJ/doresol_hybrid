@@ -1,4 +1,42 @@
-<fa-modifier fa-align="[0,0]">
+<fa-header-footer-layout fa-options="{headerSize: 90}">
+	<!-- header -->
+  <fa-view>
+		<fa-modifier>
+			<fa-surface>
+				<div ng-include="'modules/core/views/navbar.html'"></div>
+			</fa-surface>
+		</fa-modifier>
+	</fa-view>
+
+	<!-- content -->
+  <fa-scroll-view fa-pipe-from="eventHandler">
+		<fa-view>
+			<fa-modifier>
+				<fa-surface fa-pipe-to="eventHandler">
+					<img ng-src="{{memorial.file.url}}" class="img-responsive img-center"/>
+					<ul class="list-group">
+					  <li class="list-group-item">이름: {{memorial.name}}</li>
+					  <li class="list-group-item">태어나신 날: {{memorial.dateOfBirth}}</li>
+					  <li class="list-group-item">돌아가신 날: {{memorial.dateOfDeath}}</li>
+					  <li class="list-group-item">{{memorial.description}}</li>
+					</ul>
+				</fa-surface>
+				<!-- <fa-image-surface fa-pipe-to="eventHandler" fa-image-url="{{memorial.file.url}}"></fa-image-surface> -->
+			</fa-modifier>
+		</fa-view>
+		<fa-view>
+			<fa-modifier>
+				<fa-surface fa-pipe-to="eventHandler">
+					<span></span>
+				</fa-surface>
+			</fa-modifier>
+		</fa-view>
+	</fa-scroll-view>
+  <!-- <fa-surface fa-background-color="'green'">Footer</fa-surface> -->
+</fa-header-footer-layout>
+
+
+<!-- <fa-modifier fa-align="[0,0]">
 	<fa-scroll-view fa-pipe-from="eventHandler" fa-options="options.scrollViewInner">
   	<fa-view>
 	    <fa-surface fa-size="[undefined, undefined]">
@@ -86,4 +124,4 @@
 	    </fa-surface>
   	</fa-view>
   </fa-scroll-view>
-</fa-modifier>
+</fa-modifier> -->

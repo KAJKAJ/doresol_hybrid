@@ -11,16 +11,7 @@ angular
 .controller('ProfileCtrl', function($scope,ENV,$firebase,$famous, Memorial, User){
   var EventHandler = $famous['famous/core/EventHandler'];
   $scope.eventHandler = new EventHandler();
-  $scope.options = {
-    scrollViewOuter: {
-      direction: 0,
-      paginated: true
-    },
-    scrollViewInner :{
-      direction: 1
-    }
-  };
-    
+  
   $scope.memorial = Memorial.getCurrentMemorial();
   $scope.user = User.getCurrentUser();
 
