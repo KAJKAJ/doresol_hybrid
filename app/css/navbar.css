@@ -135,9 +135,6 @@ header nav {
     padding-bottom: 5px;
 }
 
-/* Medium devices, Desktops (>991px) */
-@media screen and (min-width: 992px) {
-
     /* Menu */
     .site-nav {
         position: static;
@@ -232,7 +229,7 @@ header nav {
     .site-nav ul a.active:hover {
         background-color: #454545;
     }
-}
+
 
 .navbar-container{
     padding: 0px 20px 0px 20px;
@@ -269,4 +266,21 @@ header.header-scroll {
 #logo_image{
     height:25px;
     margin-top: -10px;
+}
+
+@media (max-width: 768px) {
+  .nav-justified > li {
+    display: table-cell;
+    width: 1%;
+  }
+  .nav-justified > li > a  {
+    border-bottom: 1px solid #ddd !important;
+    border-radius: 4px 4px 0 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .nav-justified > li.active > a  {
+    border-bottom-color: #fff !important;
+  }
+
 }

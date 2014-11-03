@@ -54,12 +54,12 @@ angular.module('core')
       return route === $location.path();
     }
 
-    $scope.toggle = function(){
-      $scope.toggleMenu = true;
-    }
+    // $scope.toggle = function(){
+    //   $scope.toggleMenu = true;
+    // }
 
-    $scope.untoggle = function(){
-      $scope.toggleMenu = false;
-    }
+    // $scope.untoggle = function(){
+    //   $scope.toggleMenu = false;
+    // }
 
   });

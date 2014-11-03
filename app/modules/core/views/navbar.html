@@ -1,55 +1,25 @@
-<header ng-controller="NavbarCtrl" ng-class="{'header-scroll':shrink_header}">
-  <div class="navbar-container">
-    <!-- Site Logo -->
-    <a ui-sref="main" class="site-logo">
-      <img id="logo_image" src="img/green_icon.png"></img> Doresol
-      <!--<i class="gi gi-flash"></i> <strong>Pro</strong>UI-->
-    </a>
-    &nbsp;<span class="label label-success">Beta</span>
-    <!-- Site Logo -->
-
-    <nav>
-      <!-- Toggles menu on small screens -->
-      <a class="btn btn-default site-menu-toggle visible-xs visible-sm" ng-click="toggle()">
-          <i class="fa fa-bars"></i>
+<span ng-controller="NavbarCtrl" >
+  <header ng-class="{'header-scroll':shrink_header}">
+    <div class="navbar-container">
+      <!-- Site Logo -->
+      <a ui-sref="main" class="site-logo">
+        <img id="logo_image" src="img/green_icon.png"></img> Doresol
+        <!--<i class="gi gi-flash"></i> <strong>Pro</strong>UI-->
       </a>
-      <!-- END Menu Toggle -->
-      <ul class="site-nav" ng-class="{'site-nav-visible' : toggleMenu}">
-        <!-- Toggles menu on small screens -->
-        <li class="visible-xs visible-sm">
-            <a class="site-menu-toggle text-center" ng-click="untoggle()">
-                <i class="fa fa-times"></i>
-            </a>
-        </li>
-        
-        <li ng-show="currentUser" ng-class="{active: isActive('/profile')}"><a ui-sref="profile">프로필</a></li>
-        <li ng-show="currentUser" ng-class="{active: isActive('/story')}"><a ui-sref="story">이야기</a></li>
-        <li ng-show="currentUser" ng-class="{active: isActive('/letter')}"><a ui-sref="letter">하고싶은 말</a></li>
-        <li ng-show="currentUser" ng-class="{active: isActive('/member')}"><a ui-sref="member">함께하는 분</a></li>
-        <li ng-show="currentUser"><a ng-click="logout()">로그아웃</a></li>
+      &nbsp;<span class="label label-success">Beta</span>
+      <!-- Site Logo -->
 
-        <!-- <li ng-show="currentUser" ng-class="{active: isActive('/profile')}"><a href="/profile">프로필</a></li>
-        <li ng-show="currentUser" ng-class="{active: isActive('/story')}"><a href="/story">이야기</a></li>
-        <li ng-show="currentUser" ng-class="{active: isActive('/letter')}"><a href="/letter">하고싶은 말</a></li>
-        <li ng-show="currentUser" ng-class="{active: isActive('/member')}"><a href="/member">함께하는 분</a></li>
-        <li ng-show="currentUser"><a ng-click="logout()">로그아웃</a></li> -->
-
-        <!-- <li ng-show="currentUser" class="dropdown open">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-              <img ng-src="{{currentUser.profile.file.url}}" alt="avatar" style="width:32px;height:32px;" class="img-circle"> <i class="fa fa-angle-down"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                <li class="dropdown-header text-center">{{currentUser.profile.name}}</li>
-                <li>
-                    <a href="/settings">
-                        <i class="fa fa-cog pull-right"></i>
-                        설정
-                    </a>
-                    <button type="button" class="btn btn-block btn-danger" ng-click="logout()">로그아웃</button>
-                </li>
-            </ul>
-        </li> -->
-      </ul>
-    </nav>
-  </div>
-</header> 
+      <nav>
+        <ul class="site-nav">
+          <li ng-show="currentUser"><a ng-click="logout()">로그아웃</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:44px;">
+    <li ng-class="{active: isActive('/profile')}"><a ui-sref="profile">Profile</a></li>
+    <li ng-class="{active: isActive('/story')}"><a ui-sref="story">Story</a></li>
+    <li ng-class="{active: isActive('/letter')}"><a ui-sref="letter">Letter</a></li>
+    <li ng-class="{active: isActive('/member')}"><a ui-sref="member">Member</a></li>
+  </ul> 
+</span>
