@@ -9,6 +9,8 @@
 angular
 .module('core')
 .controller('StoryCtrl', function($scope,ENV,$firebase,$famous, Memorial, User){
+  $scope.hostUrl = ENV.HOST;
+  
   var EventHandler = $famous['famous/core/EventHandler'];
   $scope.eventHandler = new EventHandler();
   
@@ -18,8 +20,8 @@ angular
   $scope.copyMemorial = {};
   $scope.memorial.$loaded().then(function(value){
     // console.log($scope.memorial);
-    $scope.memorial.file.url = ENV.HOST + $scope.memorial.file.url;
-    angular.copy($scope.memorial,$scope.copyMemorial);
+    // $scope.memorial.file.url = ENV.HOST + $scope.memorial.file.url;
+    // angular.copy($scope.memorial,$scope.copyMemorial);
 
     $scope.isOwner = Memorial.isOwner();
     $scope.isMember = Memorial.isMember();
