@@ -9,8 +9,8 @@
     <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="lib/famous-angular/dist/famous-angular.css" />
         <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="lib/famous-angular/dist/famous-angular.css" />
         <!-- endbower -->
     <!-- endbuild -->
 
@@ -64,7 +64,7 @@
             <p>Code licensed under <a href="https://github.com/keshavos/generator-angularjs-cordova/">MIT License</a>.</p>
         </div>
     </footer> -->
-
+    
     <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="lib/jquery/dist/jquery.js"></script>
@@ -79,13 +79,13 @@
         <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="lib/angular-ui-utils/ui-utils.js"></script>
         <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="lib/famous/famous-global.js"></script>
-        <script src="lib/famous-angular/dist/famous-angular.js"></script>
         <script src="lib/moment/moment.js"></script>
         <script src="lib/firebase/firebase.js"></script>
         <script src="lib/firebase-simple-login/firebase-simple-login.js"></script>
         <script src="lib/mockfirebase/dist/mockfirebase.js"></script>
         <script src="lib/angularfire/dist/angularfire.min.js"></script>
+        <script src="lib/raf.js/raf.js"></script>
+        <script src="lib/famous-angular/dist/famous-angular.js"></script>
         <!-- endbower -->
     <!-- endbuild -->
 
@@ -93,6 +93,7 @@
     
     <!-- build:js scripts/custom.js -->
         <!-- injector:js -->
+        <script src="lib/famous/dist/famous-global.js"></script>
         <script src="js/env.js"></script>
         <script src="js/config.js"></script>
         <script src="js/application.js"></script>

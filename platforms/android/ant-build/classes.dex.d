@@ -1,5 +1,4 @@
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/ant-build/classes.dex : \
-/Users/realjangsun/workspace/doresol_hybrid/platforms/android/ant-build/classes/com/bez4pieci/cookies/Cookies.class \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/ant-build/classes/net/doresol/BuildConfig.class \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/ant-build/classes/net/doresol/doresol.class \
 /Users/realjangsun/workspace/doresol_hybrid/platforms/android/ant-build/classes/net/doresol/R$attr.class \

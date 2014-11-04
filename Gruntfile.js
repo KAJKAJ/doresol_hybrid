@@ -267,6 +267,10 @@ module.exports = function(grunt) {
             local_dependencies: {
                 files: {
                     'app/index.html': [
+                        //temp famous library added
+                        'app/lib/famous/dist/famous-global.js',
+
+                        
                         'app/js/env.js',
                         'app/js/config.js',
                         'app/js/application.js',
