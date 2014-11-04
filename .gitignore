@@ -7,6 +7,8 @@ dist/
 app/bower_components
 .idea/
 
+app/lib/
+
 www/
 ##########Platforms##########
 platforms/
