@@ -32,6 +32,12 @@ angular
                 controller: 'ProfileCtrl',
                 authenticate: true
               })
+              .state('story', {
+                url: '/story',
+                templateUrl: 'modules/core/views/story.html',
+                controller: 'StoryCtrl',
+                authenticate: true
+              })
               .state('login', {
                 url: '/login',
                 templateUrl: 'modules/core/views/login.html',
