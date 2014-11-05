@@ -27,7 +27,7 @@
 			<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
 				<fa-image-surface fa-image-url="{{hostUrl + selectedStory.file.url}}" fa-pipe-to="eventHandler" ng-click="changeMode(selectedStory,'overview')"></fa-image-surface>
 			</fa-modifier>
-			<fa-modifier fa-size="[undefined,100]" fa-translate="[0, 500, 0]">
+			<fa-modifier fa-size="[300, 100]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 500, 0]">
 				<fa-surface fa-pipe-to="eventHandler" >
 					<h4>{{selectedStory.text.headline}}</h4>
 					<p>{{selectedStory.text.text}}</p>
