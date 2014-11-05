@@ -8,7 +8,7 @@
  */
 angular
 .module('core')
-.controller('StoryCtrl', function($scope,ENV,$firebase,$famous, Memorial, User){
+.controller('StoryCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -17,13 +17,42 @@ angular
   $scope.memorial = Memorial.getCurrentMemorial();
   $scope.user = User.getCurrentUser();
 
-  // for setting
+  $scope.mode = 'overview';
   $scope.storiesArray = [];
-  $scope.storiesArray['timeline'] = [];
- 
   $scope.storiesObject = {};
-  $scope.storiesObject['timeline'] = {};
+  $scope.storiesCnt = 0;
   
+  $scope.boxSize = 200;
+  $scope.windowWidth = window.innerWidth;
+
+  $(window).resize(function(){
+    $scope.windowWidth = window.innerWidth;
+    $scope.$apply(function(){
+       //do something to update current scope based on the new innerWidth and let angular update the view.
+       calculateGrid();
+    });
+  });
+
+  var calculateGrid = function(){
+    var cols = 0;
+    var rows = 0;
+   
+    cols = Math.floor($scope.windowWidth/$scope.boxSize);
+    rows = Math.ceil($scope.storiesCnt/cols);
+    
+    $scope.gridHeight = $scope.boxSize*rows;
+    $scope.gridLayoutOptions = {
+      dimensions: [cols,rows], // specifies number of columns and rows
+    };
+  }
+
+  $scope.$watch('storiesCnt',function(newValue){
+    // $scope.gridHeight = newValue*$scope.boxSize/2;
+    if(newValue > 0){
+      calculateGrid();
+    }
+  });
+
   $scope.memorial.$loaded().then(function(value){
     
     $scope.isOwner = Memorial.isOwner();
@@ -33,6 +62,7 @@ angular
     angular.forEach(value.stories, function(story, key) {
       story.$id = key;
       $scope.assignStory(story);
+      $scope.storiesCnt++;
     });
 
   });
@@ -46,11 +76,12 @@ angular
         var storyId = event.key;
 
         // delete from timeline and setting
-        var index = $scope.storiesArray['timeline'].indexOf(event.key);
+        var index = $scope.storiesArray.indexOf(event.key);
         if( index >= 0) {
-          $scope.storiesArray['timeline'].splice(index, 1);
-          delete $scope.storiesObject['timeline'][storyId];
+          $scope.storiesArray.splice(index, 1);
+          delete $scope.storiesObject[storyId];
         }
+        $scope.storiesCnt--;
         break;
       case "child_added":
       break;
@@ -58,24 +89,19 @@ angular
   });
 
   $scope.assignStory = function(value) {
-    $scope.storiesArray['timeline'].push(value.$id);
-    $scope.storiesObject['timeline'][value.$id] = value;
+    $scope.storiesArray.push(value.$id);
+    $scope.storiesObject[value.$id] = value;
     
-    $scope.storiesArray['timeline'].sort(function(aKey,bKey){
-      var aValue = $scope.storiesObject['timeline'][aKey];
-      var bValue = $scope.storiesObject['timeline'][bKey];
+    $scope.storiesArray.sort(function(aKey,bKey){
+      var aValue = $scope.storiesObject[aKey];
+      var bValue = $scope.storiesObject[bKey];
       var aStartDate = moment(aValue.startDate).unix();
       var bStartDate = moment(bValue.startDate).unix();
       return aStartDate > bStartDate ? 1 : -1;
     });
   }
 
-  $scope.mode = 'overview';
-  console.log($scope.mode);
-
   $scope.changeMode = function(story,mode){
-    console.log(story);
-    console.log(mode);
     $scope.selectedStory = story;
     console.log('---- selected story---');
     console.log($scope.selectedStory);
@@ -109,14 +135,29 @@ angular
             if($scope.commentsObject == undefined) $scope.commentsObject = {};
             $scope.commentsObject[event.key] = valueComment;
             User.setUsersObject(valueComment.ref_user);
+            console.log('---- commentsObject ----');
             console.log($scope.commentsObject);
+            console.log('---- usersObject ----');
+            console.log($scope.users);
+
           });
           $scope.commentsTotalCnt ++;
         break;
       }
     });
   }
+  $scope.addComment = function(storyKey,comment){
+    if(comment.body){
+      Composite.createCommentFromStoryInMemorial(ENV.MEMORIAL_KEY,storyKey,comment);
+      $scope.newComment = {}; 
+    }
+  }
 
+  $scope.deleteComment = function(storyKey, commentKey) {
+    delete $scope.commentsObject[storyKey][commentKey];
+    Comment.removeCommentFromStoryInMemorial(ENV.MEMORIAL_KEY, storyKey, commentKey);
+  }
+  
   // $scope.gridLayoutOptions = {
   //   dimensions: [2,2], // specifies number of columns and rows
   // };

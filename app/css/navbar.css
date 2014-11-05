@@ -268,7 +268,7 @@ header.header-scroll {
     margin-top: -10px;
 }
 
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
   .nav-justified > li {
     display: table-cell;
     width: 1%;
@@ -277,10 +277,26 @@ header.header-scroll {
     border-bottom: 1px solid #ddd !important;
     border-radius: 4px 4px 0 0 !important;
     margin-bottom: 0 !important;
+    background-color: white !important;
   }
 
   .nav-justified > li.active > a  {
     border-bottom-color: #fff !important;
   }
 
+}*/
+
+.nav-justified > li {
+    display: table-cell;
+    width: 1%;
+}
+.nav-justified > li > a  {
+    border-bottom: 1px solid #ddd !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    background-color: white !important;
+}
+
+.nav-justified > li.active > a  {
+    border-bottom-color: #fff !important;
 }
