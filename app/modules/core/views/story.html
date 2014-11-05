@@ -23,12 +23,15 @@
 				</fa-surface> -->
 			</fa-modifier>
 		</fa-view>
-		
-		<fa-view ng-if="mode==='detail'"> 
-			<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
+
+		<fa-view ng-if="mode==='detail'">
+			<fa-modifier fa-size="[50, 50]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
+				<fa-image-surface fa-image-url="{{hostUrl + selectedStory.file.url}}" fa-pipe-to="eventHandler"></fa-image-surface>
+			</fa-modifier>
+			<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 50, 0]">
 				<fa-image-surface fa-image-url="{{hostUrl + selectedStory.file.url}}" fa-pipe-to="eventHandler" ng-click="changeMode(selectedStory,'overview')"></fa-image-surface>
 			</fa-modifier>
-			<fa-modifier fa-size="[300, 100]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 500, 0]">
+			<fa-modifier fa-size="[300, 100]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 550, 0]">
 				<fa-surface fa-pipe-to="eventHandler" >
 					<h4>{{selectedStory.text.headline}}</h4>
 					<p>{{selectedStory.text.text}}</p>
@@ -36,6 +39,17 @@
 						<embed-video href="{{selectedStory.text.videoUrl}}"></embed-video>
 					</div> -->
 				</fa-surface>
+			</fa-modifier>
+			<!-- Comments -->
+			<fa-modifier ng-repeat="(commentKey, comment) in commentsObject" fa-size="[undefined, 100]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 650 + $index * 100, 0]">
+				<fa-surface fa-pipe-to="eventHandler" >
+          <strong class="comment-user-id">{{users[comment.ref_user].profile.name}}</strong>
+          <span class="text-muted text-small"><em>{{comment.fromNow}}</em></span>
+          <span ng-if="comment.ref_user == currentUser.uid">
+            <i class="fa fa-times-circle text-danger" ng-click="deleteComment(story.$id, commentKey)"></i><p>{{comment.body}}</p>
+          </span>
+         	<p ng-if="comment.ref_user != currentUser.uid">{{comment.body}}</p>
+				</fa-surface>					      
 			</fa-modifier>
 		</fa-view>
 	</fa-scroll-view>

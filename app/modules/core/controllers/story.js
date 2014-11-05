@@ -77,8 +77,46 @@ angular
     console.log(story);
     console.log(mode);
     $scope.selectedStory = story;
+    console.log('---- selected story---');
+    console.log($scope.selectedStory);
+    _loadStoryComments($scope.selectedStory);
     $scope.mode = mode;
   }
+
+  var _loadStoryComments = function(story) {
+    $scope.commentsObject = {};
+    $scope.users = User.getUsersObject();
+    $scope.newComment = {};
+
+    $scope.commentsTotalCnt = 0;
+
+    var storyCommentsRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + ENV.MEMORIAL_KEY + '/stories/'+story.$id + '/comments/');
+    var _comments = $firebase(storyCommentsRef).$asArray();
+    
+    var commentsRef = new Firebase(ENV.FIREBASE_URI + '/comments');
+
+    _comments.$watch(function(event){
+      switch(event.event){
+        case "child_removed":
+          delete $scope.commentsObject[event.key];
+          $scope.commentsTotalCnt--;
+        break;
+        case "child_added":
+          var childRef = commentsRef.child(event.key);
+          var child = $firebase(childRef).$asObject();
+          child.$loaded().then(function(valueComment){
+            valueComment.fromNow = moment(valueComment.created_at).fromNow();
+            if($scope.commentsObject == undefined) $scope.commentsObject = {};
+            $scope.commentsObject[event.key] = valueComment;
+            User.setUsersObject(valueComment.ref_user);
+            console.log($scope.commentsObject);
+          });
+          $scope.commentsTotalCnt ++;
+        break;
+      }
+    });
+  }
+
   // $scope.gridLayoutOptions = {
   //   dimensions: [2,2], // specifies number of columns and rows
   // };
