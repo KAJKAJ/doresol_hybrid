@@ -1,19 +1,24 @@
-<!-- <fa-header-footer-layout>
-    <fa-modifier fa-size="[undefined, 90]">
+<fa-header-footer-layout>
+    <fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]">
 	    <fa-view>
 	      <fa-surface>
-	          <div ng-include="'modules/core/views/navbar.html'"></div>
+	      	  <div ng-include="'modules/core/views/navbar.html'"></div>
         </fa-surface>
 	    </fa-view>
     </fa-modifier>
 
     
-		<fa-modifier fa-size="[undefined, undefined]">
+		<fa-modifier fa-size="[undefined, undefined]" fa-translate="[0, 0, 0]">
 		  <fa-scroll-view fa-pipe-from="eventHandler">
-				<fa-view fa-index="0"> 
+				<fa-view fa-index="0" > 
+					<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
+						<fa-image-surface fa-image-url="{{hostUrl + memorial.file.url}}" fa-pipe-to="eventHandler">
+					  </fa-image-surface>
+					</fa-modifier>
+				</fa-view>
+				<fa-view fa-index="1"> 
 					<fa-modifier >
 						<fa-surface fa-pipe-to="eventHandler">
-							<img ng-src="{{memorial.file.url}}" class="img-responsive img-center"/>
 							<ul class="list-group">
 							  <li class="list-group-item">이름: {{memorial.name}}</li>
 							  <li class="list-group-item">태어나신 날: {{memorial.dateOfBirth}}</li>
@@ -21,14 +26,13 @@
 							  <li class="list-group-item">{{memorial.description}}</li>
 							</ul>
 						</fa-surface>
-						
 					</fa-modifier>
 				</fa-view>
 			</fa-scroll-view>
 		</fa-modifier>
-</fa-header-footer-layout> -->
+</fa-header-footer-layout>
      
-<fa-modifier fa-size="[undefined, undefined]">
+<!-- <fa-modifier fa-size="[undefined, undefined]">
   <fa-scroll-view fa-pipe-from="eventHandler">
   	<fa-view fa-index="0"> 
 			<fa-modifier fa-size="[undefined, 90]">
@@ -41,9 +45,6 @@
 			<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
 				<fa-image-surface fa-image-url="{{hostUrl + memorial.file.url}}" fa-pipe-to="eventHandler">
 			  </fa-image-surface>
-				<!-- <fa-surface fa-pipe-to="eventHandler">
-					<img ng-src="{{memorial.file.url}}" class="img-responsive img-center"/>
-				</fa-surface> -->
 			</fa-modifier>
 		</fa-view>
 		<fa-view fa-index="2"> 
@@ -59,7 +60,7 @@
 			</fa-modifier>
 		</fa-view>
 	</fa-scroll-view>
-</fa-modifier>
+</fa-modifier> -->
 
 
 
