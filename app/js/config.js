@@ -4,7 +4,8 @@
 var ApplicationConfiguration = (function() {
     // Init module configuration options
     var applicationModuleName = 'doresolApp';
-    var applicationModuleVendorDependencies = ['env','ngTouch', 'famous.angular','ngResource', 'ngCookies', 'ngAnimate', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'ui.utils','firebase'];
+    var applicationModuleVendorDependencies = ['env','ngTouch', 'famous.angular','ngResource', 'ngCookies'
+        , 'ngAnimate', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'ui.utils','firebase','videosharing-embed'];
 
     // Add a new vertical module
     var registerModule = function(moduleName) {

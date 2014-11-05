@@ -23,6 +23,7 @@
 				</fa-surface> -->
 			</fa-modifier>
 		</fa-view>
+		
 		<fa-view ng-if="mode==='detail'"> 
 			<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
 				<fa-image-surface fa-image-url="{{hostUrl + selectedStory.file.url}}" fa-pipe-to="eventHandler" ng-click="changeMode(selectedStory,'overview')"></fa-image-surface>
@@ -31,6 +32,9 @@
 				<fa-surface fa-pipe-to="eventHandler" >
 					<h4>{{selectedStory.text.headline}}</h4>
 					<p>{{selectedStory.text.text}}</p>
+					<!-- <div ng-if="selectedStory.text.videoUrl">
+						<embed-video href="{{selectedStory.text.videoUrl}}"></embed-video>
+					</div> -->
 				</fa-surface>
 			</fa-modifier>
 		</fa-view>
