@@ -19,7 +19,7 @@ angular
 
   $scope.copyMemorial = {};
   $scope.memorial.$loaded().then(function(value){
-    console.log($scope.memorial);
+    // console.log($scope.memorial);
     // $scope.memorial.file.url = ENV.HOST + $scope.memorial.file.url;
     // angular.copy($scope.memorial,$scope.copyMemorial);
 

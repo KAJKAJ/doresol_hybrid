@@ -1,4 +1,4 @@
-<fa-modifier fa-size="[undefined, undefined]" ng-show="mode=='overview'">
+<fa-modifier fa-size="[undefined, undefined]">
   <fa-scroll-view fa-pipe-from="eventHandler">
   	<fa-view fa-index="0"> 
 			<fa-modifier fa-size="[undefined, 90]">
@@ -15,12 +15,23 @@
 				</fa-modifier>
 		  </fa-grid-layout>
 		</fa-view> -->
-		<fa-view ng-repeat="story in storiesObject['timeline']"> 
+		<fa-view ng-repeat="story in storiesObject['timeline']" ng-if="mode==='overview'"> 
 			<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
 				<fa-image-surface fa-image-url="{{hostUrl + story.file.url}}" fa-pipe-to="eventHandler" ng-click="changeMode(story,'detail')"></fa-image-surface>
-			  <!-- <fa-surface fa-size="[undefined, 10]" fa-align="[0,-0.1]">
+			  <!-- <fa-surface fa-size="[undefined, 100]">
 					<a><span class="text-success"><i class="fa fa-comment-o"></i> {{commentsTotalCnt}}개</span></a>
 				</fa-surface> -->
+			</fa-modifier>
+		</fa-view>
+		<fa-view ng-if="mode==='detail'"> 
+			<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
+				<fa-image-surface fa-image-url="{{hostUrl + selectedStory.file.url}}" fa-pipe-to="eventHandler" ng-click="changeMode(selectedStory,'overview')"></fa-image-surface>
+			</fa-modifier>
+			<fa-modifier fa-size="[undefined,100]" fa-translate="[0, 500, 0]">
+				<fa-surface fa-pipe-to="eventHandler" >
+					<h4>{{selectedStory.text.headline}}</h4>
+					<p>{{selectedStory.text.text}}</p>
+				</fa-surface>
 			</fa-modifier>
 		</fa-view>
 	</fa-scroll-view>

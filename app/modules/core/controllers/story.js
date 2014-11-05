@@ -71,10 +71,12 @@ angular
   }
 
   $scope.mode = 'overview';
+  console.log($scope.mode);
 
-  $scope.changeMode = function(mode){
+  $scope.changeMode = function(story,mode){
     console.log(story);
     console.log(mode);
+    $scope.selectedStory = story;
     $scope.mode = mode;
   }
   // $scope.gridLayoutOptions = {
