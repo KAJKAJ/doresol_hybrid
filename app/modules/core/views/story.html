@@ -20,17 +20,18 @@
 				  </fa-modifier>
 				</fa-view>
 
-				<fa-view ng-if="mode==='detail'">
+				<fa-view fa-index="1" ng-if="mode==='detail'">
 				  <!-- story author info -->
 					<fa-modifier  fa-align="[0.1,0]" fa-origin="[0.5,0]">
 						<fa-image-surface fa-size="[50, 50]" fa-image-url="{{users[selectedStory.ref_user].profile.file.url}}"></fa-image-surface>
-						<fa-surface fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,100,0]">{{users[selectedStory.ref_user].profile.name}}</fa-surface>
+						<fa-surface fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,50,0]">{{users[selectedStory.ref_user].profile.name}}</fa-surface>
 					</fa-modifier>
 
 					<!-- story body -->
 					<fa-modifier fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,50,0]">
 						<fa-image-surface fa-image-url="{{hostUrl + selectedStory.file.url}}" fa-pipe-to="eventHandler" ng-click="changeMode(selectedStory,'overview')"></fa-image-surface>
 					</fa-modifier>
+
 					<fa-modifier fa-size="[300, true]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 550, 0]">
 						<fa-surface fa-pipe-to="eventHandler" >
 							<h4>{{selectedStory.text.headline}}</h4>
@@ -41,8 +42,8 @@
 						</fa-surface>
 					</fa-modifier>
 
-					<!-- comments -->
-					<fa-modifier ng-repeat="(commentKey, comment) in commentsObject" fa-size="[undefined,50]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 650 + $index * 50, 0]">
+				<!-- comments -->
+					<fa-modifier ng-repeat="(commentKey, comment) in commentsObject" fa-size="[undefined,500]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 650 + $index * 50, 0]">
 						<fa-surface fa-pipe-to="eventHandler" >
 		          <img ng-src="{{users[comment.ref_user].profile.file.url}}" style="width:32px;height:32px;"/>
 		          <strong class="comment-user-id">{{users[comment.ref_user].profile.name}}</strong>
@@ -57,7 +58,7 @@
 			</fa-scroll-view>
 		</fa-modifier>
 
-	 <fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]">
+	 <!-- <fa-modifier fa-size="[undefined, 80]" fa-translate="[0, 0, 1]">
     <fa-view ng-if="mode==='detail'">
     	<fa-surface fa-pipe-to="eventHandler">
         <div class="comment-body">
@@ -68,5 +69,5 @@
         </div>
 	    </fa-surface>
 	  </fa-view>
-  </fa-modifier>
+  </fa-modifier> -->
 </fa-header-footer-layout>
