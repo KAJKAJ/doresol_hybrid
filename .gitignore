@@ -15,3 +15,5 @@ platforms/
 
 ##########iOS##########
 platforms/ios/cordova/console.log
+
+app/js/env.js
