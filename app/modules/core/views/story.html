@@ -42,16 +42,18 @@
 							</fa-surface>
 						</fa-modifier>
 					</fa-view>
-					<fa-view fa-index="$index+3" ng-repeat="(commentKey, comment) in commentsObject" >
-						<fa-modifier fa-size="[undefined,50]">
+					<fa-view fa-index="4">
+						<fa-modifier fa-size="[undefined,undefined]">
 							<fa-surface fa-pipe-to="eventHandler" >
-			          <img ng-src="{{users[comment.ref_user].profile.file.url}}" style="width:32px;height:32px;"/>
-			          <strong class="comment-user-id">{{users[comment.ref_user].profile.name}}</strong>
-			          <span class="text-muted text-small"><em>{{comment.fromNow}}</em></span>
-			          <span ng-if="comment.ref_user == user.uid">
-			            <p>{{comment.body}}</p>
-			          </span>
-			         	<p ng-if="comment.ref_user != user.uid">{{comment.body}}</p>
+								<div ng-repeat="(commentKey, comment) in commentsObject">
+				          <img ng-src="{{users[comment.ref_user].profile.file.url}}" style="width:32px;height:32px;"/>
+				          <strong class="comment-user-id">{{users[comment.ref_user].profile.name}}</strong>
+				          <span class="text-muted text-small"><em>{{comment.fromNow}}</em></span>
+				          <span ng-if="comment.ref_user == user.uid">
+				            <p>{{comment.body}}</p>
+				          </span>
+				         	<p ng-if="comment.ref_user != user.uid">{{comment.body}}</p>
+			         	</div>
 							</fa-surface>					      
 						</fa-modifier>
 					</fa-view>
