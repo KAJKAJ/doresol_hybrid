@@ -2,14 +2,49 @@
     <fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]">
 	    <fa-view>
 	      <fa-surface>
-	      	  <div ng-include="'modules/core/views/navbar.html'"></div>
+      	  <div ng-include="'modules/core/views/navbar.html'"></div>
         </fa-surface>
 	    </fa-view>
     </fa-modifier>
     
 		<fa-modifier fa-size="[undefined, undefined]" fa-translate="[0, 0, 0]">
 		  <fa-scroll-view fa-pipe-from="eventHandler">
+		  	<fa-view>
+		  		<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-1')]">
+		  			<fa-surface fa-pipe-to="eventHandler">
+		  				<div id="scroll-content-1">
+		  					<div ng-repeat="storyKey in storiesArray">
+		  						<p>{{storiesObject[storyKey].text}}</p>
+		  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive"> 
+		  					</div>
+		  				</div>
+		  			</fa-surface>
+		  		</fa-modifier>
+		  	</fa-view>
+
+		  	<fa-view>
+		  		<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-2')]">
+		  			<fa-surface fa-pipe-to="eventHandler">
+		  				<div id="scroll-content-2">
+		  					ahahahahahah
+		  				</div>
+		  			</fa-surface>
+		  		</fa-modifier>
+		  	</fa-view>
+
+		  	<!-- <fa-view fa-index="$index" ng-repeat="storyKey in storiesArray" >
+		      <fa-modifier fa-size="[undefined, getHeight('{{'scroll'+ $index}}')]">
+						<fa-surface class="{{'scroll'+ $index}}" fa-pipe-to="eventHandler">
+							<p>{{storiesObject[storyKey].text}}</p>
+						</fa-surface>
+						<fa-modifier ng-if="storiesObject[storyKey].file" fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
+							<fa-image-surface fa-image-url="{{hostUrl + storiesObject[storyKey].file.url}}" fa-pipe-to="eventHandler"></fa-image-surface>
+						</fa-modifier>
+					</fa-modifier>
+		    </fa-view> -->
 			</fa-scroll-view>
 		</fa-modifier>
 	 
 </fa-header-footer-layout>
+
+
