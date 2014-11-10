@@ -32,7 +32,7 @@
 									<br/>
 									<!-- content -->
 		  						<p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text}}</p>
-		  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive"> 
+		  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive img-center"> 
 		  						<br/>
 		  						<!-- comment list-->
 		  						<div ng-repeat="(commentKey, comment) in commentsObject[storyKey]">
