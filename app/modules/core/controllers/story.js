@@ -157,7 +157,13 @@ angular
     delete $scope.commentsObject[storyKey][commentKey];
     Comment.removeCommentFromStoryInMemorial(ENV.MEMORIAL_KEY, storyKey, commentKey);
   }
-  
+
+  $scope.sequentialOptions = {
+  direction: 1, // vertical = 1 (default), horizontal = 0
+   };
+
+  $scope.sequence = [{bgColor: "orange"}, {bgColor: "red"}, {bgColor: "green"}, {bgColor: "yellow"}, {bgColor: "orange"}, {bgColor: "red"}, {bgColor: "green"}, {bgColor: "yellow"}];
+
   // $scope.gridLayoutOptions = {
   //   dimensions: [2,2], // specifies number of columns and rows
   // };
