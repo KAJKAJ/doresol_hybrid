@@ -2,7 +2,7 @@
 
 angular
 .module('core')
-.controller('LetterCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User, Comment){
+.controller('LetterCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User, Comment, Story){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -13,6 +13,7 @@ angular
 
   $scope.newComment = {};
 
+  $scope.storyKeysArray = [];
   $scope.storiesArray = [];
   $scope.storiesObject = {};
   $scope.commentsObject = {};
@@ -29,21 +30,25 @@ angular
   _stories.$watch(function(event){
     switch(event.event){
       case "child_removed":
-        var index = $scope.storiesArray.indexOf(event.key);
+        var storyKey = $scope.storyKeysArray[event.key];
+        var index = $scope.storiesArray.indexOf(storyKey);
         if( index >= 0) {
           $scope.storiesArray.splice(index, 1);
-          delete $scope.storiesObject[event.key];
+          delete $scope.storiesObject[storyKey];
         }
         break;
       case "child_added":
         var childRef = currentStorylineStoriesRef.child(event.key);
         var child = $firebase(childRef).$asObject();
+        // console.log(event.key);
         child.$loaded().then(function(value){
           var storyKey = value.$value;
           var storyRef =  new Firebase(ENV.FIREBASE_URI + '/stories/'+storyKey);
           var _story = $firebase(storyRef).$asObject();
           _story.$loaded().then(function(storyValue){
+            $scope.storyKeysArray[event.key] = storyValue.$id;
             storyValue.fromNow = moment(storyValue.created_at).fromNow();
+            storyValue.pagingKey = event.key;
             if(!$scope.commentsObject[storyValue.$id]){
               $scope.commentsObject[storyValue.$id] = {};
             }
@@ -120,6 +125,12 @@ angular
   $scope.deleteComment = function(storyKey, commentKey) {
     delete $scope.commentsObject[storyKey][commentKey];
     Comment.removeCommentFromStory(storyKey, commentKey);
+  }
+
+  $scope.removeStory = function(story){
+    // console.log(story);
+    Story.removeStoryFromStoryline(story.ref_memorial,story.$id,story.pagingKey);
+    // Story.removeStory(story.ref_memorial,story.$id);
   }
   
 });
