@@ -59,8 +59,14 @@
 		<fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]">
 	    <fa-view ng-if="mode==='detail'">
 	    	<fa-surface fa-background-color="'white'">
-          <textarea class="form-control" ng-model="newComment.body" placeholder="댓글을 입력하세요.." rows="1"/>
-          <button type="submit" class="btn btn-xs btn-success" ng-click="addComment(selectedStory.$id,newComment)"><i class="fa fa-pencil"></i>댓글 저장</button>
+	    		<div style="margin-left:10px;margin-right:10px;">
+	          <textarea class="form-control" ng-model="newComment.body" placeholder="댓글을 입력하세요.." rows="2" style="resize: none;"/>
+	          <div class="btn-group btn-group-justified">
+						  <div class="btn-group">
+						    <button type="submit" ng-click="addComment(selectedStory.$id,newComment)" class="btn btn-success">댓글 저장</button>
+						  </div>
+						</div>
+					</div>
 		    </fa-surface>
 		  </fa-view>
 	  </fa-modifier>
