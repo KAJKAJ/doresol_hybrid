@@ -32,11 +32,19 @@
 									</div>
 									<br/>
 									<!-- content -->
+		  						<!-- <p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text | limitTo:50}} <a>More..</a></p> -->
 		  						<p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text}}</p>
 		  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive img-center"> 
 		  						<br/>
+		  						<!-- comment count -->
+		  						<div class="pull-right" style="padding-right:10px;">
+		  							<button class="btn btn-xs btn-success" type="button">
+										  댓글 <span class="badge">{{commentSize(storyKey)}}</span>
+										</button>
+		  						</div>
+		  						<br/>
 		  						<!-- comment list-->
-		  						<div ng-repeat="(commentKey, comment) in commentsObject[storyKey]">
+		  						<!-- <div ng-repeat="(commentKey, comment) in commentsObject[storyKey]">
 		  							<div class="media" style="margin-left:10px;margin-right:10px;margin-bottom:5px;">
 										  <a class="media-left">
 										    <img ng-src="{{users[comment.ref_user].profile.file.url}}" style="width:32px;height:32px;"/>
@@ -46,7 +54,6 @@
 										    	<a>{{users[comment.ref_user].profile.name}}</a>
 										    	<span class="text-muted text-small"><em> {{comment.fromNow}}</em></span>
 										    	<span ng-if="comment.ref_user == user.uid">
-						                <!-- <i class="fa fa-times-circle text-danger" ng-click="deleteComment(storyKey, commentKey)"></i> -->
 						                <button type="button" class="btn btn-xs btn-danger" ng-click="deleteComment(storyKey, commentKey)">삭제</button>
 						                <p>{{comment.body}}</p>
 						              </span>
@@ -54,9 +61,9 @@
 										    </h5>
 										  </div>
 										</div>
-				         	</div>
+				         	</div> -->
 				         	<!-- new comment -->
-									<form ng-if="!isGuest" name="commentForm"ng-submit="addComment(storyKey,newComment)" novalidate style="margin-left:10px;margin-right:10px;">
+									<!-- <form ng-if="!isGuest" name="commentForm"ng-submit="addComment(storyKey,newComment)" novalidate style="margin-left:10px;margin-right:10px;">
 			              <textarea class="form-control" ng-model="newComment.body" placeholder="댓글을 입력하세요.." rows="2" style="resize: none;"/>
 			              <div class="btn-group btn-group-justified">
 										  <div class="btn-group">
@@ -64,7 +71,7 @@
 										  </div>
 										</div>
 			            </form>
-		  						<br/>
+		  						<br/> -->
 		  						<hr/>
 		  						<br/>
 		  					</div>

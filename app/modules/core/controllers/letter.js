@@ -2,7 +2,7 @@
 
 angular
 .module('core')
-.controller('LetterCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User, Comment, Story){
+.controller('LetterCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User, Comment, Story, Util){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -147,6 +147,10 @@ angular
     // console.log(story);
     Story.removeStoryFromStoryline(story.ref_memorial,story.$id,story.pagingKey);
     // Story.removeStory(story.ref_memorial,story.$id);
+  }
+
+  $scope.commentSize = function(storyId){
+    return Util.objectSize($scope.commentsObject[storyId]);
   }
   
 });
