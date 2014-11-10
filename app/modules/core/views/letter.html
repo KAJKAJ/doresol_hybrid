@@ -53,7 +53,7 @@
 										</div>
 				         	</div>
 				         	<!-- new comment -->
-									<form name="commentForm" ng-submit="addComment(storyKey,newComment)" novalidate style="margin-left:10px;margin-right:10px;">
+									<form ng-if="!isGuest" name="commentForm"ng-submit="addComment(storyKey,newComment)" novalidate style="margin-left:10px;margin-right:10px;">
 			              <textarea class="form-control" ng-model="newComment.body" placeholder="댓글을 입력하세요.." rows="2" style="resize: none;"/>
 			              <div class="btn-group btn-group-justified">
 										  <div class="btn-group">
