@@ -2,7 +2,7 @@
 
 angular
 .module('core')
-.controller('LetterCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User){
+.controller('LetterCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User, Comment){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -10,6 +10,8 @@ angular
   
   $scope.memorial = Memorial.getCurrentMemorial();
   $scope.user = User.getCurrentUser();
+
+  $scope.newComment = {};
 
   $scope.storiesArray = [];
   $scope.storiesObject = {};
@@ -106,6 +108,18 @@ angular
 
   $scope.getScrollContentHeight = function(id) {
     return $scope.scrollContentHeight[id];
+  }
+
+  $scope.addComment = function(storyKey,comment){
+    if(comment.body){
+      Composite.createComment(storyKey, comment);
+      $scope.newComment = {}; 
+    }
+  }
+
+  $scope.deleteComment = function(storyKey, commentKey) {
+    delete $scope.commentsObject[storyKey][commentKey];
+    Comment.removeCommentFromStory(storyKey, commentKey);
   }
   
 });
