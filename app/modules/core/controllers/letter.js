@@ -41,7 +41,7 @@ angular
           var storyRef =  new Firebase(ENV.FIREBASE_URI + '/stories/'+storyKey);
           var _story = $firebase(storyRef).$asObject();
           _story.$loaded().then(function(storyValue){
-            console.log(storyValue);
+            storyValue.fromNow = moment(storyValue.created_at).fromNow();
             if(!$scope.commentsObject[storyValue.$id]){
               $scope.commentsObject[storyValue.$id] = {};
             }

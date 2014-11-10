@@ -14,19 +14,46 @@
 		  			<fa-surface fa-pipe-to="eventHandler">
 		  				<div id="scroll-content-1">
 		  					<div ng-repeat="storyKey in storiesArray">
-		  						<p>{{storiesObject[storyKey].text}}</p>
+		  						<!-- author -->
+		  						<div class="media" style="margin-left:10px;">
+									  <a class="media-left">
+									    <img ng-src="{{users[storiesObject[storyKey].ref_user].profile.file.url}}" style="width:48px;height:48px;"/>
+									  </a>
+									  <div class="media-body">
+									    <h5 class="media-heading">{{users[storiesObject[storyKey].ref_user].profile.name}}</h5>
+									    <span class="text-muted text-small"><em>{{storiesObject[storyKey].fromNow}}</em></span>
+									  </div>
+									</div>
+									<br/>
+									<!-- content -->
+		  						<p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text}}</p>
 		  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive"> 
-		  					</div>
-		  				</div>
-		  			</fa-surface>
-		  		</fa-modifier>
-		  	</fa-view>
+		  						<br/>
+		  						<!-- comment -->
+		  						<div ng-repeat="(commentKey, comment) in commentsObject[storyKey]">
+		  							<div class="media" style="margin-left:10px;margin-right:10px;margin-bottom:5px;">
+										  <a class="media-left">
+										    <img ng-src="{{users[comment.ref_user].profile.file.url}}" style="width:32px;height:32px;"/>
+										  </a>
+										  <div class="media-body">
+										    <h5 class="media-heading">{{users[comment.ref_user].profile.name}}<span class="text-muted text-small"><em> {{comment.fromNow}}</em></span></h5>
+										    
+										    {{comment.body}}
+										  </div>
+										</div>
 
-		  	<fa-view>
-		  		<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-2')]">
-		  			<fa-surface fa-pipe-to="eventHandler">
-		  				<div id="scroll-content-2">
-		  					ahahahahahah
+					          <!-- <img ng-src="{{users[comment.ref_user].profile.file.url}}" style="width:32px;height:32px;"/>
+					          <strong>{{users[comment.ref_user].profile.name}}</strong>
+					          <span class="text-muted text-small"><em>{{comment.fromNow}}</em></span>
+					          <span ng-if="comment.ref_user == user.uid">
+					            <p>{{comment.body}}</p>
+					          </span>
+					         	<p ng-if="comment.ref_user != user.uid">{{comment.body}}</p> -->
+				         	</div>
+		  						<br/>
+		  						<hr/>
+		  						<br/>
+		  					</div>
 		  				</div>
 		  			</fa-surface>
 		  		</fa-modifier>
