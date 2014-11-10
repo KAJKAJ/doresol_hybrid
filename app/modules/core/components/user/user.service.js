@@ -89,11 +89,18 @@ angular.module('doresolApp')
   }
 
   var setUsersObject = function(userId){
-    var user = findById(userId);
-    user.$loaded().then(function(value){
-      // value.profile = getUserProfile(value);      
-      usersObject[value.uid] = value;
-    });
+    if(!usersObject[userId]){
+      var user = findById(userId);
+      user.$loaded().then(function(value){
+        // console.log(value);
+        if(value.profile.file.location === 'local'){
+          value.profile.file.url = ENV.HOST + "/" + value.profile.file.url;
+          console.log(value.profile.file.url);
+        }
+        // value.profile = getUserProfile(value);      
+        usersObject[value.uid] = value;
+      });
+    }
   }
 
   var getUsersObject = function(){
