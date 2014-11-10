@@ -158,11 +158,27 @@ angular
     Comment.removeCommentFromStoryInMemorial(ENV.MEMORIAL_KEY, storyKey, commentKey);
   }
 
-  $scope.sequentialOptions = {
-  direction: 1, // vertical = 1 (default), horizontal = 0
-   };
+  $scope.scrollContentHeight = {};
 
-  $scope.sequence = [{bgColor: "orange"}, {bgColor: "red"}, {bgColor: "green"}, {bgColor: "yellow"}, {bgColor: "orange"}, {bgColor: "red"}, {bgColor: "green"}, {bgColor: "yellow"}];
+  $scope.$on('$viewContentLoaded', function(){
+    $famous.find('fa-scroll-view')[0].renderNode.sync.on('start', function(event) {
+      var scrollContent = angular.element('[id^=scroll-content]');
+
+      angular.forEach(scrollContent, function(value, key) {
+        $scope.scrollContentHeight[value.id] = value.clientHeight;
+      });
+    });
+
+  });
+
+  $scope.getScrollContentHeight = function(id) {
+    return $scope.scrollContentHeight[id];
+  }
+
+  $scope.formatDate = function(date) {
+    return moment(date).format('LLL');
+  }
+
 
   // $scope.gridLayoutOptions = {
   //   dimensions: [2,2], // specifies number of columns and rows
