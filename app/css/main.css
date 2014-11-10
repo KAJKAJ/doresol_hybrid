@@ -10,3 +10,22 @@
 .img-center{
   margin:0 auto;
 }
+
+/* Main Highlight Colors */
+.text-primary,
+.text-primary:hover,
+a,
+a:hover,
+a:focus,
+.nav-pills > .active > a > .badge,
+.pagination > li > a,
+.pagination > li > span,
+.btn-link,
+.btn-link:hover,
+.btn-link:focus,
+.btn-link.btn-icon:hover,
+.btn-link.btn-icon:focus,
+.themed-color {
+  color: #27ae60; 
+}
+
