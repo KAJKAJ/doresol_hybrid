@@ -23,7 +23,8 @@
 									    <h5 class="media-heading">
 									    	<a>{{users[storiesObject[storyKey].ref_user].profile.name}}</a>
 									    	<span class="pull-right" style="padding-right:10px;" ng-if="storiesObject[storyKey].ref_user == user.uid" >
-									    		<i class="fa fa-times-circle fa-2x text-danger" ng-click="removeStory(storiesObject[storyKey])" ></i>
+									    		<!-- <i class="fa fa-times-circle fa-2x text-danger" ng-click="removeStory(storiesObject[storyKey])" ></i> -->
+									    		<button type="button" class="btn btn-xs btn-danger" ng-click="removeStory(storiesObject[storyKey])">삭제</button>
 									    	</span>
 									    </h5> 
 									    <span class="text-muted text-small"><em>{{storiesObject[storyKey].fromNow}}</em></span>
@@ -45,7 +46,9 @@
 										    	<a>{{users[comment.ref_user].profile.name}}</a>
 										    	<span class="text-muted text-small"><em> {{comment.fromNow}}</em></span>
 										    	<span ng-if="comment.ref_user == user.uid">
-						                <i class="fa fa-times-circle text-danger" ng-click="deleteComment(storyKey, commentKey)"></i><p>{{comment.body}}</p>
+						                <!-- <i class="fa fa-times-circle text-danger" ng-click="deleteComment(storyKey, commentKey)"></i> -->
+						                <button type="button" class="btn btn-xs btn-danger" ng-click="deleteComment(storyKey, commentKey)">삭제</button>
+						                <p>{{comment.body}}</p>
 						              </span>
 						              <p ng-if="comment.ref_user != user.uid">{{comment.body}}</p>
 										    </h5>
