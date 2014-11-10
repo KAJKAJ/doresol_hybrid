@@ -22,7 +22,7 @@ angular
   $scope.storiesObject = {};
   $scope.storiesCnt = 0;
   
-  $scope.boxSize = 200;
+  $scope.boxSize = 155;
   $scope.windowWidth = window.innerWidth;
 
   $(window).resize(function(){
