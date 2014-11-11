@@ -1,5 +1,5 @@
 <span ng-controller="NavbarCtrl" >
-  <header>
+  <header ng-class="{'header-scroll':shrink_header}">
     <div class="navbar-container">
       <!-- Site Logo -->
       <a ui-sref="main" class="site-logo">
@@ -11,21 +11,15 @@
 
       <nav>
         <ul class="site-nav">
-          <li ng-show="user"><a ng-click="logout()">로그아웃</a></li>
+          <li ng-show="currentUser"><a ng-click="logout()">로그아웃</a></li>
         </ul>
       </nav>
     </div>
   </header>
-  <!-- <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:44px;">
+  <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:44px;">
     <li ng-class="{active: isActive('/profile')}"><a ui-sref="profile">Profile</a></li>
     <li ng-class="{active: isActive('/story')}"><a ui-sref="story">Story</a></li>
     <li ng-class="{active: isActive('/letter')}"><a ui-sref="letter">Letter</a></li>
     <li ng-class="{active: isActive('/member')}"><a ui-sref="member">Member</a></li>
-  </ul> -->
-  <div class="btn-group btn-group-justified nav-btn" style="margin-top:44px;">
-    <a ng-class="{active: isActive('/profile')}" class="btn btn-default" ui-sref="profile">프로필</a>
-    <a ng-class="{active: isActive('/story')}" class="btn btn-default" ui-sref="story">이야기</a>
-    <a ng-class="{active: isActive('/letter')}" class="btn btn-default" ui-sref="letter">편지</a>
-    <a ng-class="{active: isActive('/member')}" class="btn btn-default" ui-sref="member">멤버</a>
-  </div>
+  </ul>
 </span>
