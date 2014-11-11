@@ -2,7 +2,7 @@
 
 angular
 .module('core')
-.controller('LetterDetailCtrl', function($scope,ENV,$stateParams,$firebase,$famous,Composite, Memorial, User, Comment, Story, Util, Letter){
+.controller('LetterDetailCtrl', function($scope,ENV,$state,$stateParams,$firebase,$famous,Composite, Memorial, User, Comment, Story, Util, Letter){
   $scope.storyKey = $stateParams.id;
   
   $scope.hostUrl = ENV.HOST;
@@ -63,9 +63,9 @@ angular
   $scope.removeStory = function(story){
     // console.log(story);
     Story.removeStoryFromStoryline(story.ref_memorial,story.$id,story.pagingKey);
-    // Story.removeStory(story.ref_memorial,story.$id);
+    $state.go('letter');
   }
-  
+
   $scope.addComment = function(storyKey,comment){
     if(comment.body){
       Composite.createComment(storyKey, comment);

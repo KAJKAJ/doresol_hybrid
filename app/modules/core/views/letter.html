@@ -14,22 +14,23 @@
 		  			<fa-surface fa-pipe-to="eventHandler">
 		  				<div id="scroll-content-letter">
 		  					<div ng-repeat="storyKey in storiesArray">
-		  						<!-- author -->
-		  						<div class="media" style="margin-left:10px;">
-									  <a class="media-left">
-									    <img ng-src="{{users[storiesObject[storyKey].ref_user].profile.file.url}}" style="width:48px;height:48px;"/>
-									  </a>
-									  <div class="media-body" style="width:100%;">
-									    <h5 class="media-heading">
-									    	<a>{{users[storiesObject[storyKey].ref_user].profile.name}}</a>
-									    </h5> 
-									    <span class="text-muted text-small"><em>{{storiesObject[storyKey].fromNow}}</em></span>
-									  </div>
-									</div>
-									<br/>
-									<!-- content -->
-		  						<!-- <p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text | limitTo:50}} <a>More..</a></p> -->
 		  						<span ui-sref="letter_detail({id:storyKey})">
+			  						<!-- author -->
+			  						<div class="media" style="margin-left:10px;">
+										  <a class="media-left">
+										    <img ng-src="{{users[storiesObject[storyKey].ref_user].profile.file.url}}" style="width:48px;height:48px;"/>
+										  </a>
+										  <div class="media-body" style="width:100%;">
+										    <h5 class="media-heading">
+										    	<a>{{users[storiesObject[storyKey].ref_user].profile.name}}</a>
+										    </h5> 
+										    <span class="text-muted text-small"><em>{{storiesObject[storyKey].fromNow}}</em></span>
+										  </div>
+										</div>
+										<br/>
+										<!-- content -->
+			  						<!-- <p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text | limitTo:50}} <a>More..</a></p> -->
+		  						
 			  						<p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text}}</p>
 			  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive img-center"> 
 			  						<br/>
