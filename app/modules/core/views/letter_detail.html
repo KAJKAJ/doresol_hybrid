@@ -1,18 +1,16 @@
 <fa-header-footer-layout>
-    <fa-modifier fa-size="[undefined, 44]" fa-translate="[0, 0, 1]">
+    <fa-modifier fa-size="[undefined, 54]" fa-translate="[0, 0, 1]">
 	    <fa-view>
 	      <fa-surface>
     	    <header>
-				    <div class="navbar-container">
-				    	<span ui-sref="letter" class="site-nav">
-				      	<strong><i class="fa fa-chevron-circle-left fa-2x"></i> 편지</strong>
-				      </span>
-
-				      <nav>
-				        <ul class="site-nav">
-				         	<strong>{{storiesObject[storyKey].text | limitTo:10}}...</strong>
-				        </ul>
-				      </nav>
+				    <div class="navbar-container" style="height:34px;">
+				    	<span ui-sref="letter" class="btn btn-default">
+				    		뒤로
+				    	</span>
+				    	
+				      &nbsp;&nbsp;&nbsp;
+				      <strong>{{storiesObject[storyKey].text | limitTo:20}}...</strong>
+				      <!-- <span><strong>편지</strong></span> -->
 				    </div>
 				  </header>
         </fa-surface>
