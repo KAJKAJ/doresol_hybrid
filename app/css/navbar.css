@@ -300,3 +300,23 @@ header.header-scroll {
 .nav-justified > li.active > a  {
     border-bottom-color: #fff !important;
 }
+
+.nav-btn > .btn {
+    border-radius:0px;
+}
+
+.nav-btn > .btn {
+    border:0px;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.nav-btn > .btn.btn-default.active{
+    border-bottom: 4px solid #27ae60;
+    background-color: white;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

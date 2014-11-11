@@ -50,6 +50,12 @@ angular
                 controller: 'LetterCtrl',
                 authenticate: true
               })
+              .state('letter_detail', {
+                url: '/letter_detail:id',
+                templateUrl: 'modules/core/views/letter_detail.html',
+                controller: 'LetterDetailCtrl',
+                authenticate: true
+              })
               .state('login', {
                 url: '/login',
                 templateUrl: 'modules/core/views/login.html',
