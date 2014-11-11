@@ -1,0 +1,60 @@
+<fa-header-footer-layout>
+    <fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]">
+	    <fa-view>
+	      <fa-surface>
+	      	  <div ng-include="'modules/core/views/navbar.html'"></div>
+        </fa-surface>
+	    </fa-view>
+    </fa-modifier>
+		<fa-modifier fa-translate="[0, 0, 0]">
+		  <fa-scroll-view fa-pipe-from="eventHandler">
+				<!-- comment profile -->
+		  	<fa-view>
+				  <fa-modifier fa-size="[undefined, 50]">
+						<fa-image-surface fa-pipe-to="eventHandler" fa-size="[50, 50]" fa-image-url="{{users[story.ref_user].profile.file.url}}"></fa-image-surface>
+						<fa-modifier fa-translate="[60,0,0]">
+							<fa-surface fa-pipe-to="eventHandler">{{users[story.ref_user].profile.name}}</fa-surface>
+						</fa-modifier>
+						<fa-modifier fa-translate="[60,20,0]">
+							<fa-surface fa-pipe-to="eventHandler">{{formatDate(story.created_at)}}</fa-surface>
+						</fa-modifier>
+					</fa-modifier>
+				</fa-view>
+
+				<!-- story detail text -->
+				<fa-view>
+					<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-1')]">
+						<fa-surface fa-pipe-to="eventHandler" >
+		  				<div id="scroll-content-1">
+								<h4>{{story.text.headline}}</h4>
+								<p>{{story.text.text}}</p>
+	  						<img ng-src="{{hostUrl + story.file.url}}" ng-click="changeMode(story,'overview')" class="img-responsive img-center"> 
+	  						<div ng-repeat="(commentKey, comment) in commentsObject">
+		              <img ng-src="{{users[comment.ref_user].profile.file.url}}" style="width:32px;height:32px;"/>
+				          <strong class="comment-user-id">{{users[comment.ref_user].profile.name}}</strong>
+				          <span class="text-muted text-small"><em>{{comment.fromNow}}</em></span>
+				          <span><p>{{comment.body}}</p></span>
+				        </div>
+				        <br>
+							</div>
+						</fa-surface>
+					</fa-modifier>
+				</fa-view>
+			</fa-scroll-view>
+		</fa-modifier>
+		<!-- comment writing -->
+		<fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]" ng-if="!isGuest" >
+	    <fa-view>
+	    	<fa-surface fa-background-color="'white'">
+	    		<div style="margin-left:10px;margin-right:10px;">
+	          <textarea class="form-control" ng-model="newComment.body" placeholder="댓글을 입력하세요.." rows="2" style="resize: none;"/>
+	          <div class="btn-group btn-group-justified">
+						  <div class="btn-group">
+						    <button type="submit" ng-click="addComment(story.$id,newComment)" class="btn btn-success">댓글 저장</button>
+						  </div>
+						</div>
+					</div>
+		    </fa-surface>
+		  </fa-view>
+	  </fa-modifier>
+</fa-header-footer-layout>

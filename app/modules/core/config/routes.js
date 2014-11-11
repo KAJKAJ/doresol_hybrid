@@ -38,6 +38,12 @@ angular
                 controller: 'StoryCtrl',
                 authenticate: true
               })
+              .state('story_detail', {
+                url: '/story_detail/:id',
+                templateUrl: 'modules/core/views/story_detail.html',
+                controller: 'StoryDetailCtrl',
+                authenticate: true
+              })
               .state('letter', {
                 url: '/letter',
                 templateUrl: 'modules/core/views/letter.html',

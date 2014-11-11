@@ -8,7 +8,7 @@
  */
 angular
 .module('core')
-.controller('StoryCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User){
+.controller('StoryCtrl', function($scope,ENV,$firebase,$state,$famous,Composite, Memorial, User, MyStory){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -18,16 +18,20 @@ angular
   $scope.user = User.getCurrentUser();
 
   $scope.mode = 'overview';
-  $scope.storiesArray = [];
-  $scope.storiesObject = {};
-  $scope.storiesCnt = 0;
-  
+  $scope.storiesArray = MyStory.getStoriesArray();
+  $scope.storiesObject = MyStory.getStoriesObject();
+  $scope.storiesCnt = MyStory.getStoriesCnt();
+
+  $scope.isOwner = MyStory.isOwner();
+  $scope.isMember = MyStory.isMember();
+  $scope.isGuest = MyStory.isGuest();
+
   $scope.boxSize = 155;
   $scope.windowWidth = window.innerWidth;
 
-  $(window).resize(function(){
+  $(window).resize(function() {
     $scope.windowWidth = window.innerWidth;
-    $scope.$apply(function(){
+    $scope.$apply(function() {
        //do something to update current scope based on the new innerWidth and let angular update the view.
        calculateGrid();
     });
@@ -38,7 +42,7 @@ angular
     var rows = 0;
    
     cols = Math.floor($scope.windowWidth/$scope.boxSize);
-    rows = Math.ceil($scope.storiesCnt/cols);
+    rows = Math.ceil($scope.storiesArray.length/cols);
     
     $scope.gridHeight = $scope.boxSize*rows;
     $scope.gridLayoutOptions = {
@@ -46,132 +50,11 @@ angular
     };
   }
 
-  $scope.$watch('storiesCnt',function(newValue){
-    // $scope.gridHeight = newValue*$scope.boxSize/2;
-    if(newValue > 0){
+  $scope.$watch( function(){ return MyStory.getStoriesCnt();}, function(newValue){
+    if($scope.storiesArray.length > 0){
       calculateGrid();
     }
   });
-
-  $scope.memorial.$loaded().then(function(value){
-    if($scope.user && $scope.user.uid === $scope.memorial.ref_user ) {
-      Memorial.setMyRole('owner');
-    } else {
-      // no member 
-      if($scope.memorial.members === undefined) {
-        Memorial.setMyRole('guest');
-      } else {
-        // member
-        if($scope.user && $scope.memorial.members[$scope.user.uid]) {
-          Memorial.setMyRole('member');
-        } else {
-          Memorial.setMyRole('guest');
-        }
-      }
-    }
-    
-    $scope.isOwner = Memorial.isOwner();
-    $scope.isMember = Memorial.isMember();
-    $scope.isGuest = Memorial.isGuest();
-
-    angular.forEach(value.stories, function(story, key) {
-      story.$id = key;
-      $scope.assignStory(story);
-      $scope.storiesCnt++;
-    });
-
-  });
-
-  var currentStoriesRef =  new Firebase(ENV.FIREBASE_URI + '/memorials/'+ENV.MEMORIAL_KEY+'/stories');
-  var _stories = $firebase(currentStoriesRef).$asArray();
-
-  _stories.$watch(function(event){
-    switch(event.event){
-      case "child_removed":
-        var storyId = event.key;
-
-        // delete from timeline and setting
-        var index = $scope.storiesArray.indexOf(event.key);
-        if( index >= 0) {
-          $scope.storiesArray.splice(index, 1);
-          delete $scope.storiesObject[storyId];
-        }
-        $scope.storiesCnt--;
-        break;
-      case "child_added":
-      break;
-    }
-  });
-
-  $scope.assignStory = function(value) {
-    $scope.storiesArray.push(value.$id);
-    $scope.storiesObject[value.$id] = value;
-    
-    $scope.storiesArray.sort(function(aKey,bKey){
-      var aValue = $scope.storiesObject[aKey];
-      var bValue = $scope.storiesObject[bKey];
-      var aStartDate = moment(aValue.startDate).unix();
-      var bStartDate = moment(bValue.startDate).unix();
-      return aStartDate > bStartDate ? 1 : -1;
-    });
-  }
-
-  $scope.changeMode = function(story,mode){
-    $scope.selectedStory = story;
-    console.log('---- selected story---');
-    console.log($scope.selectedStory);
-    _loadStoryComments($scope.selectedStory);
-    $scope.mode = mode;
-  }
-
-  var _loadStoryComments = function(story) {
-    $scope.commentsObject = {};
-    $scope.users = User.getUsersObject();
-    $scope.newComment = {};
-
-    $scope.commentsTotalCnt = 0;
-
-    var storyCommentsRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + ENV.MEMORIAL_KEY + '/stories/'+story.$id + '/comments/');
-    var _comments = $firebase(storyCommentsRef).$asArray();
-    
-    var commentsRef = new Firebase(ENV.FIREBASE_URI + '/comments');
-
-    _comments.$watch(function(event){
-      switch(event.event){
-        case "child_removed":
-          delete $scope.commentsObject[event.key];
-          $scope.commentsTotalCnt--;
-        break;
-        case "child_added":
-          var childRef = commentsRef.child(event.key);
-          var child = $firebase(childRef).$asObject();
-          child.$loaded().then(function(valueComment){
-            valueComment.fromNow = moment(valueComment.created_at).fromNow();
-            if($scope.commentsObject == undefined) $scope.commentsObject = {};
-            $scope.commentsObject[event.key] = valueComment;
-            User.setUsersObject(valueComment.ref_user);
-            console.log('---- commentsObject ----');
-            console.log($scope.commentsObject);
-            console.log('---- usersObject ----');
-            console.log($scope.users);
-
-          });
-          $scope.commentsTotalCnt ++;
-        break;
-      }
-    });
-  }
-  $scope.addComment = function(storyKey,comment){
-    if(comment.body){
-      Composite.createCommentFromStoryInMemorial(ENV.MEMORIAL_KEY,storyKey,comment);
-      $scope.newComment = {}; 
-    }
-  }
-
-  $scope.deleteComment = function(storyKey, commentKey) {
-    delete $scope.commentsObject[storyKey][commentKey];
-    Comment.removeCommentFromStoryInMemorial(ENV.MEMORIAL_KEY, storyKey, commentKey);
-  }
 
   $scope.scrollContentHeight = {};
 
@@ -183,7 +66,6 @@ angular
         $scope.scrollContentHeight[value.id] = value.clientHeight;
       });
     });
-
   });
 
   $scope.getScrollContentHeight = function(id) {
@@ -194,6 +76,9 @@ angular
     return moment(date).format('LLL');
   }
 
+  $scope.goToDetail = function(storyId) {
+    $state.go('story_detail', {id: storyId});
+  }
 
   // $scope.gridLayoutOptions = {
   //   dimensions: [2,2], // specifies number of columns and rows
