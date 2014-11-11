@@ -16,10 +16,16 @@
       </nav>
     </div>
   </header>
-  <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:44px;">
+  <!-- <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-top:44px;">
     <li ng-class="{active: isActive('/profile')}"><a ui-sref="profile">Profile</a></li>
     <li ng-class="{active: isActive('/story')}"><a ui-sref="story">Story</a></li>
     <li ng-class="{active: isActive('/letter')}"><a ui-sref="letter">Letter</a></li>
     <li ng-class="{active: isActive('/member')}"><a ui-sref="member">Member</a></li>
-  </ul>
+  </ul> -->
+  <div class="btn-group btn-group-justified nav-btn" style="margin-top:44px;">
+    <a ng-class="{active: isActive('/profile')}" class="btn btn-default" ui-sref="profile">Profile</a>
+    <a ng-class="{active: isActive('/story')}" class="btn btn-default" ui-sref="story">Story</a>
+    <a ng-class="{active: isActive('/letter')}" class="btn btn-default" ui-sref="letter">Letter</a>
+    <a ng-class="{active: isActive('/member')}" class="btn btn-default" ui-sref="member">Member</a>
+  </div>
 </span>
