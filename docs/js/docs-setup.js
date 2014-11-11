@@ -38,6 +38,15 @@ NG_DOCS={
       "moduleName": "core.Controllers",
       "shortDescription": "Home controller",
       "keywords": "$scope api controller controllers core homecontroller ng object"
+    },
+    {
+      "section": "api",
+      "id": "core.Controllers.HomeController",
+      "shortName": "core.Controllers.HomeController",
+      "type": "object",
+      "moduleName": "core.Controllers",
+      "shortDescription": "Home controller",
+      "keywords": "$scope api controller controllers core homecontroller ng object"
     }
   ],
   "apis": {
