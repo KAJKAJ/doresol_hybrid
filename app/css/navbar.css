@@ -307,6 +307,7 @@ header.header-scroll {
 
 .nav-btn > .btn {
     border:0px;
+    border-bottom: 1px solid #DCDCDC;
 }
 
 .nav-btn > .btn.btn-default.active{
