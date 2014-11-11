@@ -2,7 +2,9 @@
 
 angular
 .module('core')
-.controller('LetterCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User, Comment, Story, Util, Letter){
+.controller('LetterDetailCtrl', function($scope,ENV,$stateParams,$firebase,$famous,Composite, Memorial, User, Comment, Story, Util, Letter){
+  $scope.storyKey = $stateParams.id;
+  
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -10,6 +12,8 @@ angular
   
   $scope.memorial = Memorial.getCurrentMemorial();
   $scope.user = User.getCurrentUser();
+
+  $scope.newComment = {};
 
   $scope.storyKeysArray = Letter.getStoryKeysArray();
   $scope.storiesArray = Letter.getStoriesArray();
@@ -56,8 +60,22 @@ angular
     return $scope.scrollContentHeight[id];
   }
 
-  $scope.commentSize = function(storyId){
-    return Util.objectSize($scope.commentsObject[storyId]);
+  $scope.removeStory = function(story){
+    // console.log(story);
+    Story.removeStoryFromStoryline(story.ref_memorial,story.$id,story.pagingKey);
+    // Story.removeStory(story.ref_memorial,story.$id);
+  }
+  
+  $scope.addComment = function(storyKey,comment){
+    if(comment.body){
+      Composite.createComment(storyKey, comment);
+      $scope.newComment = {}; 
+    }
+  }
+
+  $scope.deleteComment = function(storyKey, commentKey) {
+    delete $scope.commentsObject[storyKey][commentKey];
+    Comment.removeCommentFromStory(storyKey, commentKey);
   }
   
 });
