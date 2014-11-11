@@ -1,5 +1,5 @@
 <span ng-controller="NavbarCtrl" >
-  <header ng-class="{'header-scroll':shrink_header}">
+  <header>
     <div class="navbar-container">
       <!-- Site Logo -->
       <a ui-sref="main" class="site-logo">
@@ -11,7 +11,7 @@
 
       <nav>
         <ul class="site-nav">
-          <li ng-show="currentUser"><a ng-click="logout()">로그아웃</a></li>
+          <li ng-show="user"><a ng-click="logout()">로그아웃</a></li>
         </ul>
       </nav>
     </div>
