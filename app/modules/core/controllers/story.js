@@ -22,9 +22,9 @@ angular
   $scope.storiesObject = MyStory.getStoriesObject();
   $scope.storiesCnt = MyStory.getStoriesCnt();
 
-  $scope.isOwner = MyStory.isOwner();
-  $scope.isMember = MyStory.isMember();
-  $scope.isGuest = MyStory.isGuest();
+  $scope.isOwner = Memorial.isOwner();
+  $scope.isMember = Memorial.isMember();
+  $scope.isGuest = Memorial.isGuest();
 
   $scope.boxSize = 155;
   $scope.windowWidth = window.innerWidth;

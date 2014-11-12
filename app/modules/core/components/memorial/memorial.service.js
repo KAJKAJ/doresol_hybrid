@@ -1,7 +1,7 @@
 'use strict';
 
  angular.module('doresolApp')
-  .factory('Memorial', function Memorial($firebase, $q, ENV, Util) {
+  .factory('Memorial', function Memorial($firebase, $q, ENV, Util, User) {
   
   var myMemorials = {};
   var myWaitingMemorials = {};
@@ -14,7 +14,29 @@
   var isRoleGuest = false;
 
   var setCurrentMemorial = function(memorialId){
-    currentMemorial = findById(memorialId);
+
+  	if(currentMemorial == null) {
+  		currentMemorial = findById(memorialId);
+  		var user = User.getCurrentUser();
+  		
+  		currentMemorial.$loaded().then(function(value){
+			  if(user && user.uid === currentMemorial.ref_user ) {
+			    setMyRole('owner');
+			  } else {
+			    // no member 
+			    if(currentMemorial.members === undefined) {
+			      setMyRole('guest');
+			    } else {
+			      // member
+			      if(user && currentMemorial.members[user.uid]) {
+			        setMyRole('member');
+			      } else {
+			        setMyRole('guest');
+			      }
+			    }
+			  }
+			});	
+  	}
   }
 
   var getCurrentMemorial = function(){

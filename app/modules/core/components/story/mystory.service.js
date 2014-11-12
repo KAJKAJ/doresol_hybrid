@@ -1,60 +1,47 @@
 'use strict';
 
 angular.module('doresolApp')
-  .factory('MyStory', function MyStory($firebase, Memorial, User, $q, $timeout, ENV) {
+  .factory('MyStory', function MyStory($firebase, Memorial, $q, $timeout, ENV) {
 
   var myStoriesArray = [];
   var myStoriesObject = {};
   var myStoriesCnt = 0;
-  var memorial = Memorial.getCurrentMemorial();
-  var user = User.getCurrentUser();
-  var isOwner = isMember = isGuest = false;
-
-  memorial.$loaded().then(function(value){
-    if(user && user.uid === memorial.ref_user ) {
-      Memorial.setMyRole('owner');
-    } else {
-      // no member 
-      if(memorial.members === undefined) {
-        Memorial.setMyRole('guest');
-      } else {
-        // member
-        if(user && memorial.members[user.uid]) {
-          Memorial.setMyRole('member');
-        } else {
-          Memorial.setMyRole('guest');
-        }
-      }
-    }
-    
-    isOwner = Memorial.isOwner();
-    isMember = Memorial.isMember();
-    isGuest = Memorial.isGuest();
-
-   
-  });
 
   var currentStoriesRef =  new Firebase(ENV.FIREBASE_URI + '/memorials/'+ENV.MEMORIAL_KEY+'/stories');
   var _stories = $firebase(currentStoriesRef).$asArray();
 
-  _stories.$watch(function(event){
-    switch(event.event){
-      case "child_removed":
-        var storyId = event.key;
+  _stories.$loaded().then(function(value) {
 
-        // delete from timeline and setting
-        var index = myStoriesArray.indexOf(event.key);
-        if( index >= 0) {
-          myStoriesArray.splice(index, 1);
-          delete myStoriesObject[storyId];
-        }
-        myStoriesCnt--;
+    angular.forEach(value, function(story) {
+      assignStory(story);
+      myStoriesCnt++;
+    });
+
+    _stories.$watch(function(event){
+      switch(event.event){
+        case "child_removed":
+          var storyId = event.key;
+
+          // delete from timeline and setting
+          var index = myStoriesArray.indexOf(event.key);
+          if( index >= 0) {
+            myStoriesArray.splice(index, 1);
+            delete myStoriesObject[storyId];
+          }
+          myStoriesCnt--;
+          break;
+        case "child_added":
+          var newStoryRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + ENV.MEMORIAL_KEY + '/stories/' + event.key);
+          var newStory = $firebase(newStoryRef).$asObject();
+
+          newStory.$loaded().then(function(value) {
+            assignStory(value);
+            myStoriesCnt++;
+          });
+
         break;
-      case "child_added":
-        console.log('-----------------');
-        console.log(_stories);
-      break;
-    }
+      }
+    });
   });
 
   var assignStory = function(value) {
