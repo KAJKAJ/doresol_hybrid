@@ -1,0 +1,41 @@
+<fa-header-footer-layout>
+    <fa-modifier fa-size="[undefined, 54]" fa-translate="[0, 0, 1]">
+	    <fa-view>
+	      <fa-surface>
+    	    <header>
+				    <div class="navbar-container" style="height:34px;">
+				    	<span ui-sref="letter" class="btn btn-default">
+				    		뒤로
+				    	</span>
+				    	
+				      &nbsp;&nbsp;&nbsp;
+				      <strong>편지 쓰기</strong>
+				    </div>
+				  </header>
+        </fa-surface>
+	    </fa-view>
+    </fa-modifier>
+    
+		<fa-modifier fa-size="[undefined, undefined]" fa-translate="[0, 0, 0]">
+		  <fa-scroll-view fa-pipe-from="eventHandler">
+		  	<fa-view>
+		  		<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-letter-new')]">
+		  			<fa-surface fa-pipe-to="eventHandler">
+		  				<div id="scroll-content-letter-new">
+		  					<form name="newStoryForm" ng-submit="createNewStory(newStoryForm)" novalidate style="margin:10px;">
+			            <textarea class="form-control" ng-model="newStory.text" placeholder="전하고 싶은 이야기.." rows="10" style="resize: none;"/>
+			            <br/>
+			            <div class="btn-group btn-group-justified">
+									  <div class="btn-group">
+									    <button type="submit" class="btn btn-success">편지 보내기</button>
+									  </div>
+									</div>
+			          </form>
+		  				</div>
+		  			</fa-surface>
+		  		</fa-modifier>
+		  	</fa-view>
+			</fa-scroll-view>
+		</fa-modifier>
+
+</fa-header-footer-layout>

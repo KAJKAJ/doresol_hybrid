@@ -56,6 +56,12 @@ angular
                 controller: 'LetterDetailCtrl',
                 authenticate: true
               })
+              .state('letter_new', {
+                url: '/letter_new',
+                templateUrl: 'modules/core/views/letter_new.html',
+                controller: 'LetterNewCtrl',
+                authenticate: true
+              })
               .state('login', {
                 url: '/login',
                 templateUrl: 'modules/core/views/login.html',

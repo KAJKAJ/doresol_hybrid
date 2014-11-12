@@ -52,6 +52,18 @@
 			</fa-scroll-view>
 		</fa-modifier>
 	 
+	 <!-- new letter -->
+	 	<fa-modifier ng-if="!isGuest" fa-size="[undefined, 32]" fa-translate="[0, 0, 1]" ng-if="!isGuest" >
+	    <fa-view>
+	    	<fa-surface fa-background-color="'white'">
+			    <div class="btn-group btn-group-justified">
+					  <div class="btn-group">
+					    <a ui-sref="letter_new" class="btn btn-success">편지 쓰기</a>
+					  </div>
+					</div>
+				</fa-surface>
+		  </fa-view>
+	  </fa-modifier>
 </fa-header-footer-layout>
 
 
