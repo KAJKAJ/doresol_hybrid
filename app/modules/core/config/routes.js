@@ -60,6 +60,13 @@ angular
                 url: '/login',
                 templateUrl: 'modules/core/views/login.html',
                 controller: 'LoginCtrl'
-              });
+              })
+              .state('member', {
+                url: '/member',
+                templateUrl: 'modules/core/views/member.html',
+                controller: 'MemberCtrl',
+                authenticate: true
+              })
+              ;
         }
     ]);

@@ -1,11 +1,13 @@
 'use strict';
 
  angular.module('doresolApp')
-  .factory('Memorial', function Memorial($firebase, $q, ENV, Util, User) {
+  .factory('Memorial', function Memorial($firebase, $q, ENV, Util, User, $http) {
   
   var myMemorials = {};
   var myWaitingMemorials = {};
-  
+  var inviteUrl = null;
+  var leader = {};
+
   var currentMemorial = null;
 
   var myRole = null;
@@ -35,8 +37,27 @@
 			      }
 			    }
 			  }
+
+	      leader = User.findById(currentMemorial.ref_user);
+		    User.setUsersObject(currentMemorial.ref_user);
+
+		    var longUrl = {
+		      "longUrl" : ENV.HOST + "/invites/" + ENV.MEMORIAL_KEY + "/" + user.uid
+		    };
+		    $http.post(ENV.GOOGLE_API_URI, angular.toJson(longUrl)).success(function (data) {
+		      inviteUrl = data.id;
+		    });
+
 			});	
   	}
+  }
+
+  var getLeader = function() {
+  	return leader;
+  }
+
+  var getInviteUrl = function() {
+  	return inviteUrl;
   }
 
   var getCurrentMemorial = function(){
@@ -253,6 +274,9 @@
     fetchMyWaitingMemorials:fetchMyWaitingMemorials,
     setMemorialSummary:setMemorialSummary,
 
+    getInviteUrl:getInviteUrl,
+    getLeader:getLeader,
+    
 		createEra:createEra,
 		updateEra:updateEra,
 		removeEra:removeEra,

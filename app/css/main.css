@@ -29,3 +29,10 @@ a:focus,
   color: #27ae60; 
 }
 
+.block-title {
+    margin: 5px 5px 5px;
+    background-color: #f9fafc;
+    border-bottom: 1px solid #eaedf1;
+}
+
+
