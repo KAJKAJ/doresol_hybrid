@@ -17,27 +17,9 @@ angular
   $scope.commentsObject = Letter.getCommentsObject();
   $scope.users = User.getUsersObject();
 
-  $scope.memorial.$loaded().then(function(value){
-    if($scope.user && $scope.user.uid === $scope.memorial.ref_user ) {
-      Memorial.setMyRole('owner');
-    } else {
-      // no member 
-      if($scope.memorial.members === undefined) {
-        Memorial.setMyRole('guest');
-      } else {
-        // member
-        if($scope.user && $scope.memorial.members[$scope.user.uid]) {
-          Memorial.setMyRole('member');
-        } else {
-          Memorial.setMyRole('guest');
-        }
-      }
-    }
-
-    $scope.isOwner = Memorial.isOwner();
-    $scope.isMember = Memorial.isMember();
-    $scope.isGuest = Memorial.isGuest();
-  });
+  $scope.isOwner = Memorial.isOwner();
+  $scope.isMember = Memorial.isMember();
+  $scope.isGuest = Memorial.isGuest();
 
   $scope.scrollContentHeight = {};
 

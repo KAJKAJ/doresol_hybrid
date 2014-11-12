@@ -18,14 +18,8 @@ angular
   $scope.user = User.getCurrentUser();
 
   $scope.copyMemorial = {};
-  $scope.memorial.$loaded().then(function(value){
-    // console.log($scope.memorial);
-    // $scope.memorial.file.url = ENV.HOST + $scope.memorial.file.url;
-    // angular.copy($scope.memorial,$scope.copyMemorial);
-
-    $scope.isOwner = Memorial.isOwner();
-    $scope.isMember = Memorial.isMember();
-    $scope.isGuest = Memorial.isGuest();
-  });
+  $scope.isOwner = Memorial.isOwner();
+  $scope.isMember = Memorial.isMember();
+  $scope.isGuest = Memorial.isGuest();
 
 });
