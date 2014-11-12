@@ -31,12 +31,7 @@ angular.module('doresolApp')
     isMember = Memorial.isMember();
     isGuest = Memorial.isGuest();
 
-    angular.forEach(value.stories, function(story, key) {
-      story.$id = key;
-      assignStory(story);
-      myStoriesCnt++;
-    });
-
+   
   });
 
   var currentStoriesRef =  new Firebase(ENV.FIREBASE_URI + '/memorials/'+ENV.MEMORIAL_KEY+'/stories');
@@ -56,6 +51,8 @@ angular.module('doresolApp')
         myStoriesCnt--;
         break;
       case "child_added":
+        console.log('-----------------');
+        console.log(_stories);
       break;
     }
   });
