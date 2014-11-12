@@ -24,8 +24,8 @@
 				      <h5>가입 승인 대기<span class="badge">{{users.length}}</span></h4>
 				    </div>
 	  				<!--- member profile -->
-						<div class="media" ng-repeat="(uid, member) in waitings">
-					  	<div class="media-left">
+						<div class="media" style="margin-left:10px;margin-right:10px;"ng-repeat="(uid, member) in waitings">
+					  	<div class="media-left" >
 	      				<img ng-src="{{users[uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
 	      			</div>
 	      			<div class="media-body" >
@@ -37,35 +37,38 @@
 		          </div>
 	        	</div>
 
-      	  	<div class="block-title">
-			      	<h5>멤버<span class="badge">{{users.length}}</span></h4>
-			    	</div>
-	  				<!--- leader profile -->
-						<div class="media">
-		  				<div class="media-left">
-				  	 		<img ng-src="{{users[leader.uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
-				  	 	</div>
-				  	 	<div class="media-body">
-				  	 		<h5 class="media-heading">
-				  	 			<a>{{users[leader.uid].profile.name}}</a>
-						    </h5>
-						    <span class="text-muted text-small"><em>리더</em></span>
-						  </div>
-						</div>
+						<div style="margin-left:10px;margin-right:10px;">
+	      	  	<div class="block-title">
+				      	<h5>멤버<span class="badge">{{users.length}}</span></h4>
+				    	</div>
+		  				<!--- leader profile -->
+							<div class="media">
+			  				<div class="media-left">
+					  	 		<img ng-src="{{users[leader.uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
+					  	 	</div>
+					  	 	<div class="media-body">
+					  	 		<h5 class="media-heading">
+					  	 			<a>{{users[leader.uid].profile.name}}</a>
+							    </h5>
+							    <span class="text-muted text-small"><em>리더</em></span>
+							  </div>
+							</div>
 
-	  				<!--- member profile -->
-						<div class="media" ng-repeat="(uid, member) in members">
-					  	<div class="media-left">
-	      				<img ng-src="{{users[uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
-	      			</div>
-	      			<div class="media-body" >
-		      			<h5 class="media-heading">
-		      				<a>{{users[member.uid].profile.name}}</a>
-		      			</h5>
-	      				<button ng-if="leader.uid == currentUser.uid" type="button" class="btn btn-success" ng-click="removeMember(uid)">탈퇴 시키기</button>
-		          	<button ng-if="uid == currentUser.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, 'member')">탈퇴하기</button>
-		          </div>
-	        	</div>
+		  				<!--- member profile -->
+							<div class="media" ng-repeat="(uid, member) in members">
+						  	<div class="media-left">
+		      				<img ng-src="{{users[uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
+		      			</div>
+		      			<div class="media-body" >
+			      			<h5 class="media-heading">
+			      				<a>{{users[member.uid].profile.name}}</a>
+			      			</h5>
+		      				<button ng-if="leader.uid == currentUser.uid" type="button" class="btn btn-success" ng-click="removeMember(uid)">탈퇴 시키기</button>
+			          	<button ng-if="uid == currentUser.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, 'member')">탈퇴하기</button>
+			          </div>
+		        	</div>
+		        </div> <!-- member -->
+
 		  		</fa-surface>
 		  	</fa-modifier>
 		  </fa-view>
