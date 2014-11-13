@@ -13,11 +13,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
+                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
                             "count": 1
                         },
                         {
@@ -43,10 +43,10 @@
         "org.apache.cordova.inappbrowser": {
             "PACKAGE_NAME": "net.doresol"
         },
-        "org.apache.cordova.camera": {
+        "org.apache.cordova.file": {
             "PACKAGE_NAME": "net.doresol"
         },
-        "org.apache.cordova.file": {
+        "org.apache.cordova.camera": {
             "PACKAGE_NAME": "net.doresol"
         },
         "org.apache.cordova.console": {

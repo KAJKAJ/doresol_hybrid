@@ -26,6 +26,8 @@ module.exports = function(grunt) {
                 GOOGLE_API_URI: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyAR3-1YSkP2LM-HuJshMivhOZuai9L5htM',
                 HOST: 'http://doresol.net:8000',
                 MEMORIAL_KEY:'-J_yaUS2gsgyLbDtgzQA'
+                // HOST: 'http://doresol.net',
+                // MEMORIAL_KEY:'-JXlUzqjXxv9TT49vTtT',
                 // HOST: 'http://localhost:9876',
                 // MEMORIAL_KEY:'-JZ7gqIDugLV4H57tRNg'
               }
