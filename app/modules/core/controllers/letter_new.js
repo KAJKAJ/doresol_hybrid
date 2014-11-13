@@ -81,7 +81,7 @@ angular
       var options = new FileUploadOptions();
 
       options.fileKey = "file";
-      var fileName = getFileUniqueId() + imageURI.substr(imageURI.lastIndexOf('/') + 1) + '.jpg'; 
+      var fileName = getFileUniqueId() + imageURI.substr(imageURI.lastIndexOf('/') + 1).replace(/[^\.0-9a-zA-Z_-]/img, '') + '.jpg'; 
       options.fileName = fileName; 
       options.mimeType = "image/jpeg";
       options.chunkedMode = false;
