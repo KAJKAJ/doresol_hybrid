@@ -7,6 +7,8 @@ angular
   $scope.fileUploading = false;
   $scope.fileAdded = false;
 
+  $scope.uploading = false;
+
   var EventHandler = $famous['famous/core/EventHandler'];
   $scope.eventHandler = new EventHandler();
   
@@ -119,6 +121,7 @@ angular
 
   $scope.createNewStory = function(form){
     if(form.$valid){
+      $scope.uploading = true;
       $scope.newStory.type = 'storyline';
       // if($scope.newStory.file){
       //   var file = {
@@ -138,8 +141,10 @@ angular
         if($scope.newStoryForm){
           $scope.newStoryForm.$setPristine({reload: true,notify: true});
         }
+        $scope.uploading = false;
         $state.go('letter');
       }, function(error){
+        $scope.uploading = false;
         console.log(error);
       });
     }
