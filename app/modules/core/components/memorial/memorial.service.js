@@ -17,8 +17,8 @@
 
   var setCurrentMemorial = function(memorialId){
   	var addMemberForMemorial = function(memorial,user){
-  		console.log(memorial);
-  		console.log(user);
+  		// console.log(memorial);
+  		// console.log(user);
 
   		if(memorial.public){
   			var userMemberRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/members');

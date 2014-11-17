@@ -5,7 +5,7 @@ angular.module('doresolApp')
 
   var members = {};
   var waitings = {};
-  var watingsCnt = 0;
+  var waitingsCnt = 0;
 
   var userMembersRef =  new Firebase(ENV.FIREBASE_URI + '/users');
 
@@ -33,6 +33,7 @@ angular.module('doresolApp')
           var child = $firebase(childRef).$asObject();
           child.$loaded().then(function(value){
             members[value.uid] = value;
+            // console.log(value);
             User.setUsersObject(value.uid);
           });
         break;
@@ -45,8 +46,9 @@ angular.module('doresolApp')
   var _waitings = $firebase(memorialWaitingsRef).$asArray();
 
   _waitings.$loaded().then( function(waitingList) {
-
+    // console.log(waitingList);
     angular.forEach(waitingList, function(waiting) {
+      // console.log(waiting);
       var childRef = userMembersRef.child(waiting.$id);
       var child = $firebase(childRef).$asObject();
       child.$loaded().then(function(value){
@@ -58,17 +60,19 @@ angular.module('doresolApp')
     _waitings.$watch(function(event){
       switch(event.event){
         case "child_removed":
-          watingsCnt--;
+          waitingsCnt--;
           delete waitings[event.key];
           break;
         case "child_added":
-          watingsCnt++;
+        // console.log('aaa');
+          waitingsCnt++;
           var childRef = userMembersRef.child(event.key);
           var child = $firebase(childRef).$asObject();
           child.$loaded().then(function(value){
             waitings[value.uid] = value;
             User.setUsersObject(value.uid);
           });
+          // console.log(waitingsCnt);
         break;
       }
     });
@@ -83,7 +87,7 @@ angular.module('doresolApp')
   }
 
   var getWaitingsCnt = function() {
-    return watingsCnt;
+    return waitingsCnt;
   }
   
   var removeMember = function(memberId){

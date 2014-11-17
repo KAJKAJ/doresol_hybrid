@@ -29,15 +29,18 @@ angular
 
   $scope.members = Member.getMembers();
   $scope.waitings = Member.getWaitings();
-  $scope.watingsCnt = Member.getWaitingsCnt();
+  $scope.waitingsCnt = Member.getWaitingsCnt();
+  // console.log($scope.waitingsCnt);
 
   // remove member from member list
-  $scope.removeMember = function(uid) {
+  $scope.removeMember = function(uid,logout) {
     Member.removeMember(uid).then(function(){
-      Auth.logout();
-      $scope.user = null;
-      User.setCurrentUser();
-      $state.go('login');
+      if(logout){
+        Auth.logout();
+        $scope.user = null;
+        User.setCurrentUser();
+        $state.go('login');
+      }
     });
   };
 

@@ -13,28 +13,27 @@
 	  			<fa-surface fa-pipe-to="eventHandler">
 		  			<div id="scroll-content-member">
 		  				<!-- 초대하기 -->
-	  					<div class="block-title">
+		  				<!-- <div class="block-title">
 				      	<h5>초대하기</h4>
 					    </div>
 					    <div class="alert alert-success">
 					     <h5><i class="fa fa-envelope-o"></i> 주소 - <strong>{{inviteUrl}}</strong></h4>
 					     초대하고 싶으신 분에게 위의 URL을 알려주세요.
-					    </div>
+					    </div> -->
 					    <!-- 초대하기 -->
-							<div class="block-title" ng-if="waitingsCnt > 0">
+							<div class="block-title" ng-if="waitings">
 					      <h5>가입 승인 대기<span class="badge">{{users.length}}</span></h4>
 					    </div>
 		  				<!--- member profile -->
-							<div class="media" style="margin-left:10px;margin-right:10px;"ng-repeat="(uid, member) in waitings">
+							<div class="media" style="margin-left:10px;margin-right:10px;" ng-repeat="(uid, member) in waitings">
 						  	<div class="media-left" >
 		      				<img ng-src="{{users[uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
 		      			</div>
-		      			<div class="media-body" >
+		      			<div class="media-body">
 			      			<h5 class="media-heading">
 			      				<a>{{users[member.uid].profile.name}}</a>
 			      			</h5>
-		      				<button ng-if="leader.uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid)">탈퇴 시키기</button>
-			          	<button ng-if="uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, 'member')">탈퇴하기</button>
+		      				<button ng-if="leader.uid == user.uid" type="button" class="btn btn-success" ng-click="moveMember(uid)">가입 승인하기</button>
 			          </div>
 		        	</div>
 
@@ -64,8 +63,8 @@
 				      			<h5 class="media-heading">
 				      				<a>{{users[member.uid].profile.name}}</a>
 				      			</h5>
-			      				<button ng-if="leader.uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid)">탈퇴 시키기</button>
-				          	<button ng-if="uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, 'member')">탈퇴하기</button>
+			      				<button ng-if="leader.uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, false)">탈퇴 시키기</button>
+				          	<button ng-if="uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, true)">탈퇴하기</button>
 				          </div>
 			        	</div>
 			        </div> <!-- member -->
