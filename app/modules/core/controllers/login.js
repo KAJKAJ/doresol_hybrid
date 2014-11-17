@@ -22,13 +22,13 @@ angular
     }
 
     var _login = function(){
-      console.log('email login clicked');
+      // console.log('email login clicked');
       Auth.login({
           email: $scope.loginUser.email,
           password: $scope.loginUser.password
         })
         .then( function (value){
-          console.log(value);
+          // console.log(value);
           _afterLogin(value.uid);
         } ,function(error){
           console.log(error);

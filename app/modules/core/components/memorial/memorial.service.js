@@ -16,6 +16,20 @@
   var isRoleGuest = false;
 
   var setCurrentMemorial = function(memorialId){
+  	var addMemberForMemorial = function(memorial,user){
+  		console.log(memorial);
+  		console.log(user);
+
+  		if(memorial.public){
+  			var userMemberRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/members');
+		    $firebase(userMemberRef).$set(memorialId, true);
+		    
+		    var memorialMemberRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/members');
+				$firebase(memorialMemberRef).$set(user.uid, true);
+  		}else{
+
+  		}
+  	}
 
   	if(currentMemorial == null) {
   		currentMemorial = findById(memorialId);
@@ -28,12 +42,14 @@
 			  } else {
 			    // no member 
 			    if(currentMemorial.members === undefined) {
+			    	addMemberForMemorial(value,user);
 			      setMyRole('guest');
 			    } else {
 			      // member
 			      if(user && currentMemorial.members[user.uid]) {
 			        setMyRole('member');
 			      } else {
+			      	addMemberForMemorial(value,user);
 			        setMyRole('guest');
 			      }
 			    }

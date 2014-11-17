@@ -8,7 +8,7 @@
  */
 angular
 .module('core')
-.controller('MemberCtrl', function($scope,ENV,$firebase,$state,$famous,Composite,Memorial, User, MyStory, Member){
+.controller('MemberCtrl', function($scope,ENV,$firebase,$state,$famous,Composite,Memorial, User, MyStory, Member, Auth){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -33,7 +33,12 @@ angular
 
   // remove member from member list
   $scope.removeMember = function(uid) {
-    Member.removeMember(uid);
+    Member.removeMember(uid).then(function(){
+      Auth.logout();
+      $scope.user = null;
+      User.setCurrentUser();
+      $state.go('login');
+    });
   };
 
   // from waiting list to member list

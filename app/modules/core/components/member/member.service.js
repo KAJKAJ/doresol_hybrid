@@ -93,7 +93,7 @@ angular.module('doresolApp')
 
     var userMemberRef =  new Firebase(ENV.FIREBASE_URI + '/users/' + memberId + '/memorials/members');
     var userMember = $firebase(userMemberRef);
-    userMember.$remove(ENV.MEMORIAL_KEY);
+    return userMember.$remove(ENV.MEMORIAL_KEY);
   }
 
   return {

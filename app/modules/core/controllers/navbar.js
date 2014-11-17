@@ -7,7 +7,7 @@ angular.module('core')
     
     $scope.logout = function() {
       Auth.logout();
-      $scope.currentUser = null;
+      $scope.user = null;
       User.setCurrentUser();
       $location.path('/login');
     }
