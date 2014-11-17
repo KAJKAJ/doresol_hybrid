@@ -32,17 +32,8 @@ angular
   $scope.watingsCnt = Member.getWaitingsCnt();
 
   // remove member from member list
-  $scope.removeMember = function(uid, role) {
-    var index = _members.$indexFor(uid);
-    _members.$remove(index);
-
-    var userMembersRef =  new Firebase(ENV.FIREBASE_URI + '/users/' + uid + '/memorials/members');
-    $firebase(userMembersRef).$remove(ENV.MEMORIAL_KEY).then(function(value){
-      if(role == 'member') $state.go('memorials');          
-    }, function(error) {
-      console.log(error);
-
-    });
+  $scope.removeMember = function(uid) {
+    Member.removeMember(uid);
   };
 
   // from waiting list to member list

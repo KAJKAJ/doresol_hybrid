@@ -5,7 +5,9 @@ angular
 .controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite, ENV, $famous) {
     $scope.loginUser = {};
     $scope.signupUser = {};
-    
+    //set current memorial
+    // Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
+
     $scope.loginOauth = function(provider) {
       Auth.loginOauth(provider).then(function(value){
         _afterLogin(value.uid);
@@ -14,7 +16,7 @@ angular
 
     var _afterLogin = function(userId){
       Memorial.clearMyMemorial();
-      //set current memorial
+      // //set current memorial
       Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
       $state.go("profile");
     }

@@ -22,6 +22,7 @@
   		var user = User.getCurrentUser();
   		
   		currentMemorial.$loaded().then(function(value){
+  			// console.log(value);
 			  if(user && user.uid === currentMemorial.ref_user ) {
 			    setMyRole('owner');
 			  } else {

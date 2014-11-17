@@ -95,7 +95,7 @@ angular.module('doresolApp')
         // console.log(value);
         if(value.profile.file.location === 'local'){
           value.profile.file.url = ENV.HOST + "/" + value.profile.file.url;
-          console.log(value.profile.file.url);
+          // console.log(value.profile.file.url);
         }
         // value.profile = getUserProfile(value);      
         usersObject[value.uid] = value;

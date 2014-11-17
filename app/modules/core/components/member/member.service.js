@@ -86,10 +86,21 @@ angular.module('doresolApp')
     return watingsCnt;
   }
   
+  var removeMember = function(memberId){
+    var memorialMembersRef =  new Firebase(ENV.FIREBASE_URI + '/memorials/'+ENV.MEMORIAL_KEY+'/members');
+    var memorialMembers = $firebase(memorialMembersRef);
+    memorialMembers.$remove(memberId);
+
+    var userMemberRef =  new Firebase(ENV.FIREBASE_URI + '/users/' + memberId + '/memorials/members');
+    var userMember = $firebase(userMemberRef);
+    userMember.$remove(ENV.MEMORIAL_KEY);
+  }
+
   return {
     getMembers: getMembers,
     getWaitings: getWaitings,
-    getWaitingsCnt: getWaitingsCnt
+    getWaitingsCnt: getWaitingsCnt,
+    removeMember:removeMember
   }; 
 
 });
