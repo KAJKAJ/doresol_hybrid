@@ -24,7 +24,7 @@ angular
   });
 
   $scope.memorial = Memorial.getCurrentMemorial();
-  $scope.currentUser = User.getCurrentUser();
+  $scope.user = User.getCurrentUser();
   $scope.users = User.getUsersObject();
 
   $scope.members = Member.getMembers();

@@ -33,8 +33,8 @@
 			      			<h5 class="media-heading">
 			      				<a>{{users[member.uid].profile.name}}</a>
 			      			</h5>
-		      				<button ng-if="leader.uid == currentUser.uid" type="button" class="btn btn-success" ng-click="removeMember(uid)">탈퇴 시키기</button>
-			          	<button ng-if="uid == currentUser.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, 'member')">탈퇴하기</button>
+		      				<button ng-if="leader.uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid)">탈퇴 시키기</button>
+			          	<button ng-if="uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, 'member')">탈퇴하기</button>
 			          </div>
 		        	</div>
 
@@ -64,8 +64,8 @@
 				      			<h5 class="media-heading">
 				      				<a>{{users[member.uid].profile.name}}</a>
 				      			</h5>
-			      				<button ng-if="leader.uid == currentUser.uid" type="button" class="btn btn-success" ng-click="removeMember(uid)">탈퇴 시키기</button>
-				          	<button ng-if="uid == currentUser.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, 'member')">탈퇴하기</button>
+			      				<button ng-if="leader.uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid)">탈퇴 시키기</button>
+				          	<button ng-if="uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, 'member')">탈퇴하기</button>
 				          </div>
 			        	</div>
 			        </div> <!-- member -->
