@@ -10,12 +10,14 @@
 
   var currentMemorial = null;
 
-  var myRole = null;
-  var isRoleOwner = false;
-  var isRoleMember = false;
-  var isRoleGuest = false;
-
+  var role = {
+  	isOwner : false,
+  	isMember: false,
+  	isGuest:false
+  }
+  
   var setCurrentMemorial = function(memorialId){
+  	// console.log('setCurrentMemorial');
   	var addMemberForMemorial = function(memorial,user){
   		// console.log(memorial);
   		// console.log(user);
@@ -26,8 +28,10 @@
 		    
 		    var memorialMemberRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/members');
 				$firebase(memorialMemberRef).$set(user.uid, true);
-  		}else{
 
+				setMyRole('member');
+  		}else{
+  			setMyRole('guest');
   		}
   	}
 
@@ -43,14 +47,14 @@
 			    // no member 
 			    if(currentMemorial.members === undefined) {
 			    	addMemberForMemorial(value,user);
-			      setMyRole('guest');
+			      // setMyRole('guest');
 			    } else {
 			      // member
 			      if(user && currentMemorial.members[user.uid]) {
 			        setMyRole('member');
 			      } else {
 			      	addMemberForMemorial(value,user);
-			        setMyRole('guest');
+			        // setMyRole('guest');
 			      }
 			    }
 			  }
@@ -240,38 +244,25 @@
 		});
 	};
 
-	var setMyRole = function(role){
-		myRole = role;
-		switch(role) {
+	var setMyRole = function(type){
+		switch(type) {
 			case 'owner':
-				isRoleOwner= true;
-				isRoleMember = isRoleGuest = false;
+				role.isOwner= true;
+				role.isMember = role.isGuest = false;
 				break;
 			case 'member':
-				isRoleOwner = isRoleGuest = false;
-				isRoleMember = true;
+				role.isOwner = role.isGuest = false;
+				role.isMember = true;
 				break;
 			default:
-				isRoleOwner = isRoleMember = false;
-				isRoleGuest = true;
+				role.isOwner = role.isMember = false;
+				role.isGuest = true;
 				break;
 		}
 	}
 
-	var getMyRole = function(){
-		return myRole;
-	}
-
-	var isOwner = function(){
-		return isRoleOwner;
-	}
-
-	var isMember = function(){
-		return isRoleMember;
-	}
-
-	var isGuest = function(){
-		return isRoleGuest;
+	var getRole = function(){
+		return role;
 	}
 
 	return {
@@ -306,11 +297,7 @@
 		removeWaiting:removeWaiting,
 
 		// role related
-		setMyRole:setMyRole,
-		getMyRole:getMyRole,
-		isOwner:isOwner,
-		isMember:isMember,
-		isGuest:isGuest
+		getRole : getRole
 	};
 	
 });

@@ -86,7 +86,7 @@
 		</fa-modifier>
 	 	
 	 	<!-- new comment -->
-	 	<fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]" ng-if="!isGuest" >
+	 	<fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]" ng-if="!role.isGuest" >
 	    <fa-view>
 	    	<fa-surface fa-background-color="'white'">
 	    		<form name="commentForm"ng-submit="addComment(storyKey,newComment)" novalidate >

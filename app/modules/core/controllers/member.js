@@ -15,9 +15,9 @@ angular
   $scope.eventHandler = new EventHandler();
 
   // inviteUrl 처리
-  $scope.$watch( function(){ return Memorial.getInviteUrl();}, function(newValue){
-    $scope.inviteUrl = newValue;
-  });
+  // $scope.$watch( function(){ return Memorial.getInviteUrl();}, function(newValue){
+  //   $scope.inviteUrl = newValue;
+  // });
 
   $scope.$watch( function(){ return Memorial.getLeader();}, function(newValue){
     $scope.leader = newValue;
@@ -30,6 +30,8 @@ angular
   $scope.members = Member.getMembers();
   $scope.waitings = Member.getWaitings();
   $scope.waitingsCnt = Member.getWaitingsCnt();
+
+  $scope.role = Memorial.getRole();
   // console.log($scope.waitingsCnt);
 
   // remove member from member list

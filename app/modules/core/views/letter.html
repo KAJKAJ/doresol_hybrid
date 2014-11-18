@@ -10,7 +10,7 @@
 		<fa-modifier fa-size="[undefined, undefined]" fa-translate="[0, 0, 0]">
 		  <fa-scroll-view fa-pipe-from="eventHandler">
 		  	<fa-view>
-		  		<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-letter')]">
+		  		<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined, getScrollContentHeight('scroll-content-letter')]">
 		  			<fa-surface fa-pipe-to="eventHandler">
 		  				<div id="scroll-content-letter">
 		  					<div ng-repeat="storyKey in storiesArray">
@@ -48,12 +48,17 @@
 		  				</div>
 		  			</fa-surface>
 		  		</fa-modifier>
+		  		<fa-modifier ng-if="!memorial.public&&role.isGuest">
+						<fa-surface >
+					  	<div ng-include="'modules/core/views/block.html'"></div>
+					  </fa-surface>
+					</fa-modifier>
 		  	</fa-view>
 			</fa-scroll-view>
 		</fa-modifier>
 	 
 	 <!-- new letter -->
-	 	<fa-modifier ng-if="!isGuest" fa-size="[undefined, 32]" fa-translate="[0, 0, 1]" ng-if="!isGuest" >
+	 	<fa-modifier ng-if="!role.isGuest" fa-size="[undefined, 32]" fa-translate="[0, 0, 1]">
 	    <fa-view>
 	    	<fa-surface fa-background-color="'white'">
 			    <div class="btn-group btn-group-justified">

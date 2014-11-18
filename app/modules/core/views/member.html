@@ -9,7 +9,7 @@
 	<fa-modifier fa-translate="[0, 0, 0]">
 	  <fa-scroll-view fa-pipe-from="eventHandler">
 	  	<fa-view>
-		  	<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-member')]">
+		  	<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined, getScrollContentHeight('scroll-content-member')]">
 	  			<fa-surface fa-pipe-to="eventHandler">
 		  			<div id="scroll-content-member">
 		  				<!-- 초대하기 -->
@@ -71,6 +71,11 @@
 			      </div>
 		  		</fa-surface>
 		  	</fa-modifier>
+		  	<fa-modifier ng-if="!memorial.public&&role.isGuest">
+					<fa-surface >
+				  	<div ng-include="'modules/core/views/block.html'"></div>
+				  </fa-surface>
+				</fa-modifier>
 		  </fa-view>
 	</fa-modifier>
 </fa-header-footer-layout>

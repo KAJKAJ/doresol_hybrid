@@ -20,9 +20,7 @@ angular
   $scope.newStory = {};
   $scope.newStory.public = true;
 
-  $scope.isOwner = Memorial.isOwner();
-  $scope.isMember = Memorial.isMember();
-  $scope.isGuest = Memorial.isGuest();
+  $scope.role = Memorial.getRole();
 
   $scope.scrollContentHeight = {};
 

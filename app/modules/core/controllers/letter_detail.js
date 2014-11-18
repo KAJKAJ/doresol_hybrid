@@ -21,9 +21,7 @@ angular
   $scope.commentsObject = Letter.getCommentsObject();
   $scope.users = User.getUsersObject();
 
-  $scope.isOwner = Memorial.isOwner();
-  $scope.isMember = Memorial.isMember();
-  $scope.isGuest = Memorial.isGuest();
+  $scope.role = Memorial.getRole();
 
   $scope.scrollContentHeight = {};
 
