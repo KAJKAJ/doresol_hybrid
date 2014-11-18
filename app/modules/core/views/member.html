@@ -21,8 +21,8 @@
 					     초대하고 싶으신 분에게 위의 URL을 알려주세요.
 					    </div> -->
 					    <!-- 초대하기 -->
-							<div class="block-title" ng-if="waitings">
-					      <h5>가입 승인 대기<span class="badge">{{users.length}}</span></h4>
+							<div class="block-title" ng-if="getWaitingsCnt()>0">
+					      <h5>가입 승인 대기 <span class="badge"> {{getWaitingsCnt()}}</span></h4>
 					    </div>
 		  				<!--- member profile -->
 							<div class="media" style="margin-left:10px;margin-right:10px;" ng-repeat="(uid, member) in waitings">
@@ -39,7 +39,7 @@
 
 							<div style="margin-left:10px;margin-right:10px;">
 		      	  	<div class="block-title">
-					      	<h5>멤버<span class="badge">{{users.length}}</span></h4>
+					      	<h5>멤버 <span class="badge"> {{getMembersCnt() + 1}}</span></h4>
 					    	</div>
 			  				<!--- leader profile -->
 								<div class="media">

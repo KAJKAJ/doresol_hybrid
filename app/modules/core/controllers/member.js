@@ -8,7 +8,7 @@
  */
 angular
 .module('core')
-.controller('MemberCtrl', function($scope,ENV,$firebase,$state,$famous,Composite,Memorial, User, MyStory, Member, Auth){
+.controller('MemberCtrl', function($scope,ENV,$firebase,$state,$famous,Composite,Memorial, User, Member, Auth, Util){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -29,11 +29,9 @@ angular
 
   $scope.members = Member.getMembers();
   $scope.waitings = Member.getWaitings();
-  $scope.waitingsCnt = Member.getWaitingsCnt();
-
+  
   $scope.role = Memorial.getRole();
-  // console.log($scope.waitingsCnt);
-
+ 
   // remove member from member list
   $scope.removeMember = function(uid,logout) {
     Member.removeMember(uid).then(function(){
@@ -76,6 +74,14 @@ angular
 
   $scope.getScrollContentHeight = function(id) {
     return $scope.scrollContentHeight[id];
+  }
+
+  $scope.getWaitingsCnt = function(){
+    return Util.objectSize($scope.waitings);
+  }
+
+  $scope.getMembersCnt = function(){
+    return Util.objectSize($scope.members);
   }
 
 });
