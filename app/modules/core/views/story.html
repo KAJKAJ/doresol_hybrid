@@ -7,10 +7,10 @@
     </fa-view>
   </fa-modifier>
 	<fa-modifier fa-translate="[0, 0, 0]">
-	  <fa-scroll-view fa-pipe-from="eventHandler">
+	  <fa-scroll-view fa-pipe-from="eventHandler" fa-options="scrollOption">
 	  	<!-- only for overview -->
-	  	<fa-view>
-				<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined,{{gridHeight}}]">
+	  	<!-- <fa-view ng-if="memorial.public||!role.isGuest" >
+				<fa-modifier fa-size="[undefined,{{gridHeight}}]">
 					<fa-grid-layout fa-options="gridLayoutOptions">
 				    <fa-modifier ng-repeat="story in storiesObject" fa-size="[{{boxSize}}, {{boxSize}}]"  fa-align="[0.5,0]" fa-origin="[0.5,0]">
 							<fa-image-surface fa-image-url="{{hostUrl + story.file.url}}" fa-pipe-to="eventHandler" ng-click="goToDetail(story.$id)">
@@ -18,12 +18,40 @@
 						</fa-modifier>
 				  </fa-grid-layout>
 			  </fa-modifier>
-			  <fa-modifier ng-if="!memorial.public&&role.isGuest">
-					<fa-surface >
+			</fa-view> -->
+
+			<fa-view ng-if="memorial.public||!role.isGuest" ng-repeat="story in storiesObject" fa-index="$index">
+				<fa-modifier fa-size="[undefined,580]">
+					<fa-modifier fa-size="[500,500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
+						<fa-image-surface fa-image-url="{{hostUrl + story.file.url}}" fa-pipe-to="eventHandler" ng-click="goToDetail(story.$id)">
+						</fa-image-surface>
+					</fa-modifier>
+					<fa-modifier fa-size="[undefined,80]" fa-translate="[10, 510, 0]">
+						<fa-surface fa-pipe-to="eventHandler">
+							<div>
+								{{story.text.headline}}
+							</div>
+
+							<div class="pull-right" style="padding-right:20px;">
+  							<button class="btn btn-xs btn-success" type="button">
+								  댓글 <span class="badge">{{objectSize(story.comments)}}</span>
+								</button>
+  						</div>
+
+						</fa-surface>
+					</fa-modifier>
+				</fa-modifier>
+			</fa-view>
+
+
+
+
+			<fa-view ng-if="!memorial.public&&role.isGuest">
+				<fa-modifier >
+					<fa-surface>
 				  	<div ng-include="'modules/core/views/block.html'"></div>
 				  </fa-surface>
 				</fa-modifier>
 			</fa-view>
 	</fa-modifier>
 </fa-header-footer-layout>
-
