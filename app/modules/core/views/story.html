@@ -27,7 +27,7 @@
 						</fa-image-surface>
 					</fa-modifier>
 					<fa-modifier fa-size="[undefined,80]" fa-translate="[10, 510, 0]">
-						<fa-surface fa-pipe-to="eventHandler">
+						<fa-surface fa-pipe-to="eventHandler" ng-click="goToDetail(story.$id)">
 							<div>
 								{{story.text.headline}}
 							</div>
