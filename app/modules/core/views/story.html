@@ -9,45 +9,21 @@
 	<fa-modifier fa-translate="[0, 0, 0]">
 	  <fa-scroll-view fa-pipe-from="eventHandler">
 	  	<!-- only for overview -->
-	  	<!-- <fa-view> -->
-				<!-- <fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined,{{gridHeight}}]">
+	  	<fa-view>
+				<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined,{{gridHeight}}]">
 					<fa-grid-layout fa-options="gridLayoutOptions">
 				    <fa-modifier ng-repeat="story in storiesObject" fa-size="[{{boxSize}}, {{boxSize}}]"  fa-align="[0.5,0]" fa-origin="[0.5,0]">
 							<fa-image-surface fa-image-url="{{hostUrl + story.file.url}}" fa-pipe-to="eventHandler" ng-click="goToDetail(story.$id)">
 						</fa-image-surface>
 						</fa-modifier>
 				  </fa-grid-layout>
-			  </fa-modifier> -->
-
-			  <!-- <fa-modifier ng-if="memorial.public||!role.isGuest"  fa-size="[undefined, getScrollContentHeight('scroll-content-story')]">
-			  	<fa-surface fa-pipe-to="eventHandler" >
-			  		<div id="scroll-content-story">
-				  		<div ng-repeat="img in tempArray"> 
-				  			<img ng-src="{{img.url}}" class="img-responsive"/>
-				  		</div>
-			  		</div>
-			  	</fa-surface>
-			  </fa-modifier> -->
-
-			  <!-- <fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined,50000]" ng-repeat="img in tempArray">
-		  		<fa-image-surface fa-image-url="{{img.url}}" fa-size="[undefined, 500]"  fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-pipe-to="eventHandler"></fa-image-surface>
-			  </fa-modifier> -->
-
-	<fa-sequential-layout fa-options="sequentialOptions">
-   <fa-view ng-repeat="img in tempArray">
-     <fa-modifier fa-size="[undefined, 100]">
-       <fa-surface fa-background-color="'green'" fa-pipe-to="eventHandler">{{$index}}</fa-surface>
-     </fa-modifier>
-   </fa-view>
-  </fa-sequential-layout>
-
-			  <!-- <fa-modifier ng-if="!memorial.public&&role.isGuest">
+			  </fa-modifier>
+			  <fa-modifier ng-if="!memorial.public&&role.isGuest">
 					<fa-surface >
 				  	<div ng-include="'modules/core/views/block.html'"></div>
 				  </fa-surface>
-				</fa-modifier> -->
-			<!-- </fa-view> -->
-		</fa-scroll-view>
+				</fa-modifier>
+			</fa-view>
 	</fa-modifier>
 </fa-header-footer-layout>
 
