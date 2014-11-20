@@ -1,5 +1,5 @@
 <fa-header-footer-layout>
-  <fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]">
+  <fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 100]">
     <fa-view>
       <fa-surface>
       	  <div ng-include="'modules/core/views/navbar.html'"></div>
@@ -21,12 +21,12 @@
 			</fa-view> -->
 
 			<fa-view ng-if="memorial.public||!role.isGuest" ng-repeat="story in storiesObject" fa-index="$index">
-				<fa-modifier fa-size="[undefined,580]">
-					<fa-modifier fa-size="[500,500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
+				<fa-modifier fa-size="[undefined,480]">
+					<fa-modifier fa-size="[400,400]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
 						<fa-image-surface fa-image-url="{{hostUrl + story.file.url}}" fa-pipe-to="eventHandler" ng-click="goToDetail(story.$id)">
 						</fa-image-surface>
 					</fa-modifier>
-					<fa-modifier fa-size="[undefined,80]" fa-translate="[10, 510, 0]">
+					<fa-modifier fa-size="[undefined,80]" fa-translate="[10, 410, 0]">
 						<fa-surface fa-pipe-to="eventHandler" ng-click="goToDetail(story.$id)">
 							<div>
 								{{story.text.headline}}
