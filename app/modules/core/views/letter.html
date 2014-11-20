@@ -8,14 +8,14 @@
     </fa-modifier>
     
 		<fa-modifier fa-size="[undefined, undefined]" fa-translate="[0, 0, 0]">
-		  <fa-scroll-view fa-pipe-from="eventHandler">
-		  	<fa-view>
+		  <fa-scroll-view fa-pipe-from="eventHandler" fa-options="scrollOption">
+		  	<!-- <fa-view>
 		  		<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined, getScrollContentHeight('scroll-content-letter')]">
 		  			<fa-surface fa-pipe-to="eventHandler">
 		  				<div id="scroll-content-letter">
 		  					<div ng-repeat="storyKey in storiesArray">
 		  						<span ui-sref="letter_detail({id:storyKey})">
-			  						<!-- author -->
+			  						
 			  						<div class="media" style="margin-left:10px;">
 										  <a class="media-left">
 										    <img ng-src="{{users[storiesObject[storyKey].ref_user].profile.file.url}}" style="width:48px;height:48px;"/>
@@ -28,13 +28,11 @@
 										  </div>
 										</div>
 										<br/>
-										<!-- content -->
-			  						<!-- <p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text | limitTo:50}} <a>More..</a></p> -->
 		  						
 			  						<p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text}}</p>
 			  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive img-center"> 
 			  						<br/>
-			  						<!-- comment count -->
+			  						
 			  						<div class="pull-right" style="padding-right:10px;">
 			  							<button class="btn btn-xs btn-success" type="button">
 											  댓글 <span class="badge">{{commentSize(storyKey)}}</span>
@@ -48,12 +46,53 @@
 		  				</div>
 		  			</fa-surface>
 		  		</fa-modifier>
-		  		<fa-modifier ng-if="!memorial.public&&role.isGuest">
+		  	</fa-view> -->
+		  	<fa-view ng-if="memorial.public||!role.isGuest" ng-repeat="storyKey in storiesArray" fa-index="$index">
+		  		<fa-modifier fa-size="[undefined,{{storiesObject[storyKey].file?470:160}}]">
+		  			<fa-modifier fa-size="[undefined,50]" >
+							<fa-surface fa-pipe-to="eventHandler" ng-click="goToDetail(storyKey)">
+								<div class="media" style="margin-left:10px;">
+								  <a class="media-left">
+								    <img ng-src="{{users[storiesObject[storyKey].ref_user].profile.file.url}}" style="width:48px;height:48px;"/>
+								  </a>
+								  <div class="media-body" style="width:100%;">
+								    <h5 class="media-heading">
+								    	<a>{{users[storiesObject[storyKey].ref_user].profile.name}}</a>
+								    </h5> 
+								    <span class="text-muted text-small"><em>{{storiesObject[storyKey].fromNow}}</em></span>
+								  </div>
+								</div>
+							</fa-surface>
+						</fa-modifier>
+						<fa-modifier fa-size="[300,300]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, 60, 0]" ng-if="storiesObject[storyKey].file">
+							<fa-image-surface fa-image-url="{{hostUrl + storiesObject[storyKey].file.url}}" fa-pipe-to="eventHandler" ng-click="goToDetail(storyKey)">
+							</fa-image-surface>
+						</fa-modifier>
+						<fa-modifier fa-size="[undefined,50]" fa-translate="[10, {{storiesObject[storyKey].file?370:60}}, 0]">
+							<fa-surface fa-pipe-to="eventHandler" ng-click="goToDetail(storyKey)">
+								{{storiesObject[storyKey].text|limitTo:30}} <span ng-if="storiesObject[storyKey].text.length>30">...</span>
+							</fa-surface>
+						</fa-modifier>
+						<fa-modifier fa-size="[undefined,50]" fa-translate="[0, {{storiesObject[storyKey].file?420:110}}, 0]">
+							<fa-surface fa-pipe-to="eventHandler" ng-click="goToDetail(storyKey)">
+								<div class="pull-right" style="padding-right:10px;">
+	  							<button class="btn btn-xs btn-success" type="button">
+									  댓글 <span class="badge">{{commentSize(storyKey)}}</span>
+									</button>
+	  						</div>
+							</fa-surface>
+						</fa-modifier>
+		  		</fa-modifier>
+		  	</fa-view>
+
+		  	<fa-view ng-if="!memorial.public&&role.isGuest">
+		  		<fa-modifier>
 						<fa-surface >
 					  	<div ng-include="'modules/core/views/block.html'"></div>
 					  </fa-surface>
 					</fa-modifier>
 		  	</fa-view>
+
 			</fa-scroll-view>
 		</fa-modifier>
 	 

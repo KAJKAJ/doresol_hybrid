@@ -8,7 +8,7 @@
  */
 angular
 .module('core')
-.controller('StoryCtrl', function($scope,ENV,$firebase,$state,$famous,Composite, Memorial, User, MyStory, Util){
+.controller('StoryCtrl', function($scope,ENV,$state,$famous, Memorial, User, MyStory, Util){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
