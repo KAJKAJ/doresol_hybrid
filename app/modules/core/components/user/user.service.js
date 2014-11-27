@@ -96,7 +96,9 @@ angular.module('doresolApp')
       user.$loaded().then(function(value){
         // console.log(value.profile.file.location === 'local');
         var tempUser = {};
-        angular.copy(value,tempUser);
+        tempUser.uid = value.uid;
+        tempUser.profile = value.profile;
+        // angular.copy(value,tempUser);
 
         if(tempUser.profile.file.location === 'local'){
           tempUser.profile.file.url = ENV.HOST + "/" + tempUser.profile.file.url;

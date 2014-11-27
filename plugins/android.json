@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -53,6 +57,9 @@
             "PACKAGE_NAME": "net.doresol"
         },
         "org.apache.cordova.file-transfer": {
+            "PACKAGE_NAME": "net.doresol"
+        },
+        "org.apache.cordova.splashscreen": {
             "PACKAGE_NAME": "net.doresol"
         }
     },

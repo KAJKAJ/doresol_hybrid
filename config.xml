@@ -1,5 +1,30 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="net.doresol" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <!-- <platform name="android">
+	    <splash src="res/drawable-land-hpdi/screen.png" density="land-hdpi"/>
+	    <splash src="res/drawable-land-ldpi/screen.png" density="land-ldpi"/>
+	    <splash src="res/drawable-land-mdpi/screen.png" density="land-mdpi"/>
+	    <splash src="res/drawable-land-xhpdi/screen.png" density="land-xhdpi"/>
+
+	    <splash src="res/drawable-port-hpdi/screen.png" density="port-hdpi"/>
+	    <splash src="res/drawable-port-ldpi/screen.png" density="port-ldpi"/>
+	    <splash src="res/drawable-port-ldpi/screen.png" density="port-mdpi"/>
+	    <splash src="res/drawable-port-ldpi/screen.png" density="port-xhdpi"/>
+
+	    <splash src="screen/screen.png" density="land-hdpi"/>
+	    <splash src="screen/screen.png" density="land-ldpi"/>
+	    <splash src="screen/screen.png" density="land-mdpi"/>
+	    <splash src="screen/screen.png" density="land-xhdpi"/>
+
+	    <splash src="screen/screen.png" density="port-hdpi"/>
+	    <splash src="screen/screen.png" density="port-ldpi"/>
+	    <splash src="screen/screen.png" density="port-mdpi"/>
+	    <splash src="screen/screen.png" density="port-xhdpi"/>
+	</platform> -->
+
+
+	<preference name="SplashScreen" value="screen" />	
+	<preference name="SplashScreenDelay" value="5000" />
     <name>doresol</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -9,4 +34,5 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    
 </widget>

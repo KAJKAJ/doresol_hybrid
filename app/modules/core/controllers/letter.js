@@ -2,7 +2,7 @@
 
 angular
 .module('core')
-.controller('LetterCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User, Comment, Story, Util, Letter){
+.controller('LetterCtrl', function($scope,ENV,$famous, Memorial, User, Util, Letter, $state){
   $scope.hostUrl = ENV.HOST;
 
   var EventHandler = $famous['famous/core/EventHandler'];
@@ -19,25 +19,35 @@ angular
 
   $scope.role = Memorial.getRole();
 
-  $scope.scrollContentHeight = {};
+  $scope.scrollOption = {
+    // direction: 0,
+    paginated: true
+  };
 
-  $scope.$on('$viewContentLoaded', function(){
-    $famous.find('fa-scroll-view')[0].renderNode.sync.on('start', function(event) {
-      var scrollContent = angular.element('[id^=scroll-content]');
+  // $scope.scrollContentHeight = {};
 
-      angular.forEach(scrollContent, function(value, key) {
-        $scope.scrollContentHeight[value.id] = value.clientHeight;
-      });
+  // $scope.$on('$viewContentLoaded', function(){
+  //   $famous.find('fa-scroll-view')[0].renderNode.sync.on('start', function(event) {
+  //     var scrollContent = angular.element('[id^=scroll-content]');
 
-    });
-  });
+  //     angular.forEach(scrollContent, function(value, key) {
+  //       $scope.scrollContentHeight[value.id] = value.clientHeight;
+  //     });
 
-  $scope.getScrollContentHeight = function(id) {
-    return $scope.scrollContentHeight[id];
-  }
+  //   });
+  // });
+
+  // $scope.getScrollContentHeight = function(id) {
+  //   return $scope.scrollContentHeight[id];
+  // }
 
   $scope.commentSize = function(storyId){
     return Util.objectSize($scope.commentsObject[storyId]);
   }
   
+  $scope.goToDetail = function(storyKey) {
+    console.log(storyKey);
+    $state.go('letter_detail', {id: storyKey});
+  }
+
 });

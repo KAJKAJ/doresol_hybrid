@@ -52,11 +52,12 @@ angular
     }
 
     var options = {
-        quality: 50,
+        quality: 30,
         destinationType: Camera.DestinationType.FILE_URI,
         encodingType: Camera.EncodingType.JPEG,
         sourceType: sourceType,
         mediaType: Camera.MediaType.PICTURE,
+        targetWidth: 1024,
         allowEdit : false,
     }
     

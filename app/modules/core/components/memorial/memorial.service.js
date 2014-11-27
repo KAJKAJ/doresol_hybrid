@@ -21,24 +21,25 @@
   	var addMemberForMemorial = function(user){
   		// console.log(memorial);
   		// console.log(user);
+  		if(user.uid !== currentMemorial.ref_user ) {
+		    if(currentMemorial.public){
+	  			var userMemberRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/members');
+			    $firebase(userMemberRef).$set(memorialId, true);
+			    
+			    var memorialMemberRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/members');
+					$firebase(memorialMemberRef).$set(user.uid, true);
 
-  		if(currentMemorial.public){
-  			var userMemberRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/members');
-		    $firebase(userMemberRef).$set(memorialId, true);
-		    
-		    var memorialMemberRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/members');
-				$firebase(memorialMemberRef).$set(user.uid, true);
+					setMyRole('member');
+	  		}else{
+	  			var userWaitingRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/waitings');
+			    $firebase(userWaitingRef).$set(memorialId, true);
 
-				setMyRole('member');
-  		}else{
-  			var userWaitingRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/waitings');
-		    $firebase(userWaitingRef).$set(memorialId, true);
+			    var memorialWaitingRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/waitings');
+					$firebase(memorialWaitingRef).$set(user.uid, true);
 
-		    var memorialWaitingRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/waitings');
-				$firebase(memorialWaitingRef).$set(user.uid, true);
-
-  			setMyRole('guest');
-  		}
+	  			setMyRole('guest');
+	  		}
+		  }
   	}
 
   	var setRoleForMemorial = function(){
