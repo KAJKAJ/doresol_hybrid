@@ -8,12 +8,9 @@
  */
 angular
 .module('core')
-.controller('ProfileCtrl', function($scope,ENV,$firebase,$famous, Memorial, User){
+.controller('ProfileCtrl', function($scope,ENV,$firebase, Memorial, User){
   $scope.hostUrl = ENV.HOST;
 
-  var EventHandler = $famous['famous/core/EventHandler'];
-  $scope.eventHandler = new EventHandler();
-  
   $scope.memorial = Memorial.getCurrentMemorial();
   $scope.user = User.getCurrentUser();
 

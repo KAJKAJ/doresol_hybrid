@@ -2,7 +2,7 @@
 
 angular
 .module('core')
-.controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite, ENV, $famous) {
+.controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite, ENV) {
     $scope.loginUser = {};
     $scope.signupUser = {};
     //set current memorial
@@ -69,8 +69,4 @@ angular
         });
       }
     };
-
-    var EventHandler = $famous['famous/core/EventHandler'];
-    $scope.eventHandler = new EventHandler();
-
   });

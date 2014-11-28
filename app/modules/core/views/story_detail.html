@@ -10,7 +10,7 @@
 				    	
 				      &nbsp;&nbsp;&nbsp;
 				      <strong>{{story.text.headline| limitTo:20}}...</strong>
-				      <!-- <span><strong>편지</strong></span> -->
+				     
 				    </div>
 				  </header>
         </fa-surface>
@@ -19,8 +19,8 @@
     
 		<fa-modifier fa-translate="[0, 0, 0]">
 		  <fa-scroll-view fa-pipe-from="eventHandler">
-				<!-- comment profile -->
-		  	<fa-view>
+				
+				<fa-view>
 				  <fa-modifier fa-size="[undefined, 50]" fa-align="[0.01,0]">
 						<fa-image-surface fa-pipe-to="eventHandler" fa-size="[50, 50]" fa-image-url="{{users[story.ref_user].profile.file.url}}"></fa-image-surface>
 						<fa-modifier fa-translate="[60,0,0]">
@@ -32,7 +32,7 @@
 					</fa-modifier>
 				</fa-view>
 
-				<!-- story detail text -->
+				
 				<fa-view>
 					<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-1')]">
 						<fa-surface fa-pipe-to="eventHandler" >
@@ -55,7 +55,7 @@
 				</fa-view>
 			</fa-scroll-view>
 		</fa-modifier>
-		<!-- comment writing -->
+		
 		<fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]" ng-if="!role.isGuest" >
 	    <fa-view>
 	    	<fa-surface fa-background-color="'white'">

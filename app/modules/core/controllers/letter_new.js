@@ -2,16 +2,13 @@
 
 angular
 .module('core')
-.controller('LetterNewCtrl', function($scope,$state,ENV,$firebase,$famous,Composite, Memorial, User, Util, $timeout,usSpinnerService){
+.controller('LetterNewCtrl', function($scope,$state,ENV,$firebase,Composite, Memorial, User, Util, $timeout,usSpinnerService){
   $scope.hostUrl = ENV.HOST;
   $scope.fileUploading = false;
   $scope.fileAdded = false;
 
   $scope.uploading = false;
 
-  var EventHandler = $famous['famous/core/EventHandler'];
-  $scope.eventHandler = new EventHandler();
-  
   $scope.memorial = Memorial.getCurrentMemorial();
   $scope.memorialKey = ENV.MEMORIAL_KEY;
 
@@ -21,23 +18,6 @@ angular
   $scope.newStory.public = true;
 
   $scope.role = Memorial.getRole();
-
-  $scope.scrollContentHeight = {};
-
-  $scope.$on('$viewContentLoaded', function(){
-    $famous.find('fa-scroll-view')[0].renderNode.sync.on('start', function(event) {
-      var scrollContent = angular.element('[id^=scroll-content]');
-
-      angular.forEach(scrollContent, function(value, key) {
-        $scope.scrollContentHeight[value.id] = value.clientHeight;
-      });
-
-    });
-  });
-
-  $scope.getScrollContentHeight = function(id) {
-    return $scope.scrollContentHeight[id];
-  }
 
   $scope.addPhoto = function(type){
     var sourceType = null;

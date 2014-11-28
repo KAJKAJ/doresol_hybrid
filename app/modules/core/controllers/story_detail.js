@@ -8,12 +8,9 @@
  */
 angular
 .module('core')
-.controller('StoryDetailCtrl', function($scope,ENV,$firebase,$famous,Composite, Memorial, User, $stateParams, MyStory){
+.controller('StoryDetailCtrl', function($scope,ENV,$firebase,Composite, Memorial, User, $stateParams, MyStory){
   $scope.hostUrl = ENV.HOST;
 
-  var EventHandler = $famous['famous/core/EventHandler'];
-  $scope.eventHandler = new EventHandler();
-  
   $scope.user = User.getCurrentUser();
   $scope.story = MyStory.getStoryObj($stateParams.id);
   $scope.mode = 'detail';
@@ -67,29 +64,8 @@ angular
     Comment.removeCommentFromStoryInMemorial(ENV.MEMORIAL_KEY, storyKey, commentKey);
   }
 
-  $scope.scrollContentHeight = {};
-
-  $scope.$on('$viewContentLoaded', function(){
-    $famous.find('fa-scroll-view')[0].renderNode.sync.on('start', function(event) {
-      var scrollContent = angular.element('[id^=scroll-content]');
-
-      angular.forEach(scrollContent, function(value, key) {
-        $scope.scrollContentHeight[value.id] = value.clientHeight;
-      });
-    });
-
-  });
-
-  $scope.getScrollContentHeight = function(id) {
-    return $scope.scrollContentHeight[id];
-  }
-
   $scope.formatDate = function(date) {
     return moment(date).format('LLL');
   }
 
-
-  // $scope.gridLayoutOptions = {
-  //   dimensions: [2,2], // specifies number of columns and rows
-  // };
 });

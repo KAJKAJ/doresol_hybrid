@@ -2,12 +2,9 @@
 
 angular
 .module('core')
-.controller('LetterCtrl', function($scope,ENV,$famous, Memorial, User, Util, Letter, $state){
+.controller('LetterCtrl', function($scope,ENV, Memorial, User, Util, Letter, $state){
   $scope.hostUrl = ENV.HOST;
 
-  var EventHandler = $famous['famous/core/EventHandler'];
-  $scope.eventHandler = new EventHandler();
-  
   $scope.memorial = Memorial.getCurrentMemorial();
   $scope.user = User.getCurrentUser();
 

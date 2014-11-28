@@ -9,44 +9,6 @@
     
 		<fa-modifier fa-size="[undefined, undefined]" fa-translate="[0, 0, 0]">
 		  <fa-scroll-view fa-pipe-from="eventHandler" fa-options="scrollOption">
-		  	<!-- <fa-view>
-		  		<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined, getScrollContentHeight('scroll-content-letter')]">
-		  			<fa-surface fa-pipe-to="eventHandler">
-		  				<div id="scroll-content-letter">
-		  					<div ng-repeat="storyKey in storiesArray">
-		  						<span ui-sref="letter_detail({id:storyKey})">
-			  						
-			  						<div class="media" style="margin-left:10px;">
-										  <a class="media-left">
-										    <img ng-src="{{users[storiesObject[storyKey].ref_user].profile.file.url}}" style="width:48px;height:48px;"/>
-										  </a>
-										  <div class="media-body" style="width:100%;">
-										    <h5 class="media-heading">
-										    	<a>{{users[storiesObject[storyKey].ref_user].profile.name}}</a>
-										    </h5> 
-										    <span class="text-muted text-small"><em>{{storiesObject[storyKey].fromNow}}</em></span>
-										  </div>
-										</div>
-										<br/>
-		  						
-			  						<p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text}}</p>
-			  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive img-center"> 
-			  						<br/>
-			  						
-			  						<div class="pull-right" style="padding-right:10px;">
-			  							<button class="btn btn-xs btn-success" type="button">
-											  댓글 <span class="badge">{{commentSize(storyKey)}}</span>
-											</button>
-			  						</div>
-		  						</span>
-		  						<br/>
-		  						<hr/>
-		  						<br/>
-		  					</div>
-		  				</div>
-		  			</fa-surface>
-		  		</fa-modifier>
-		  	</fa-view> -->
 		  	<fa-view ng-if="memorial.public||!role.isGuest" ng-repeat="storyKey in storiesArray" fa-index="$index">
 		  		<fa-modifier fa-size="[undefined,{{storiesObject[storyKey].file?470:160}}]">
 		  			<fa-modifier fa-size="[undefined,50]" >
@@ -96,7 +58,6 @@
 			</fa-scroll-view>
 		</fa-modifier>
 	 
-	 <!-- new letter -->
 	 	<fa-modifier ng-if="!role.isGuest" fa-size="[undefined, 32]" fa-translate="[0, 0, 1]">
 	    <fa-view>
 	    	<fa-surface fa-background-color="'white'">

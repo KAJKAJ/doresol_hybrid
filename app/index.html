@@ -10,7 +10,9 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
-        <link rel="stylesheet" href="lib/famous-angular/dist/famous-angular.css" />
+        <link rel="stylesheet" href="lib/mobile-angular-ui/dist/css/mobile-angular-ui-hover.css" />
+        <link rel="stylesheet" href="lib/mobile-angular-ui/dist/css/mobile-angular-ui-base.css" />
+        <link rel="stylesheet" href="lib/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.css" />
         <!-- endbower -->
     <!-- endbuild -->
 
@@ -18,52 +20,52 @@
         <!-- injector:css -->
         <link rel="stylesheet" href="css/customcordova.css" />
         <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" href="css/navbar.css" />
         <!-- endinjector -->
     <!-- endbuild -->
   </head>
 
   <body>
-    <!-- =================== Navigation bar =================== -->
-   <!--  <header class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">
-                        angularjsapp
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- <div role="main">
+      <section id="uiview" ui-view></section>
+    </div> -->
 
-    <div class="header-placeholder"></div> -->
-    <div role="main">
-        <!-- <header class="bs-header text-center" id="overview">
-            <div class="container">
-                <h1 id="app-heading">
-                    AngularJs Cordova application
-                </h1>
-            </div>
-        </header> -->
-        <!-- <fa-app style="height: 500px;"> -->
-
-        <fa-app class="full-screen">
-          <section id="uiview" ui-view></section>
-        </fa-app>
-
-        <!-- <div resizable ng-style="{ width: windowWidth, height: windowHeight }" fa-app>
-          <section id="uiview" ui-view></section>
-        </div> -->
-        
+    <!-- Sidebars -->
+    <div ng-include="'modules/core/views/sidebar.html'" class="sidebar sidebar-left" toggleable="" parent-active-class="sidebar-left-in" id="mainSidebar">
     </div>
-    <!-- /.main -->
+    <div class="app">
 
-    <!-- <footer class="footer">
-        <div class="container">
-            <p>Code licensed under <a href="https://github.com/keshavos/generator-angularjs-cordova/">MIT License</a>.</p>
+      <!-- Navbars -->
+
+      <div class="navbar navbar-app navbar-absolute-top">
+        <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+          도래솔
         </div>
-    </footer> -->
+        <div class="btn-group pull-left">
+          <div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">
+            <i class="fa fa-bars"></i> Menu
+          </div>
+        </div>
+        <!-- <div class="btn-group pull-right" ui-yield-to="navbarAction">
+          <div ui-toggle="sidebarRight" class="btn">
+            <i class="fa fa-comment"></i> Chat
+          </div>
+        </div> -->
+      </div>
+
+      <!-- App Body -->
+      <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+        <div class="app-content">
+          <section id="uiview" ui-view></section>
+        </div>
+      </div>
+
+    </div>
+
+    <div ui-yield-to="modals"></div>
+
     
     <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
@@ -85,10 +87,9 @@
         <script src="lib/mockfirebase/dist/mockfirebase.js"></script>
         <script src="lib/angularfire/dist/angularfire.min.js"></script>
         <script src="lib/raf.js/raf.js"></script>
-        <script src="lib/famous-angular/dist/famous-angular.js"></script>
-        <script src="lib/ng-videosharing-embed/build/ng-videosharing-embed.min.js"></script>
         <script src="lib/spin.js/spin.js"></script>
         <script src="lib/angular-spinner/angular-spinner.js"></script>
+        <script src="lib/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
         <!-- endbower -->
     <!-- endbuild -->
 
@@ -96,7 +97,6 @@
     
     <!-- build:js scripts/custom.js -->
         <!-- injector:js -->
-        <script src="lib/famous/dist/famous-global.js"></script>
         <script src="js/env.js"></script>
         <script src="js/config.js"></script>
         <script src="js/application.js"></script>
@@ -116,6 +116,7 @@
         <script src="modules/core/controllers/letter_detail.js"></script>
         <script src="modules/core/controllers/letter_new.js"></script>
         <script src="modules/core/controllers/login.js"></script>
+        <script src="modules/core/controllers/main.js"></script>
         <script src="modules/core/controllers/member.js"></script>
         <script src="modules/core/controllers/navbar.js"></script>
         <script src="modules/core/controllers/profile.js"></script>

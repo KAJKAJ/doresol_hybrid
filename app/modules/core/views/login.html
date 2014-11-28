@@ -1,8 +1,7 @@
-<!-- fa-scroll-view receives all events from $scope.myEventHandler, and decides how to handle them -->
 <fa-scroll-view fa-pipe-from="eventHandler">
     <fa-view fa-index="0">
       <fa-modifier fa-size="[undefined, 250]">
-      <!-- All events on fa-surfaces (click, mousewheel) are piped to $scope.myEventHandler -->
+      
          <fa-surface fa-pipe-to="eventHandler">
          	<div class="login-block">
 			        <div>
@@ -34,7 +33,7 @@
     </fa-view>
     <fa-view fa-index="1">
       <fa-modifier fa-size="[undefined, undefined]">
-      <!-- All events on fa-surfaces (click, mousewheel) are piped to $scope.myEventHandler -->
+      
          <fa-surface fa-pipe-to="eventHandler">
 			    <div class="login-block">
 			      <div class="well">

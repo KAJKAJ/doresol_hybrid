@@ -10,7 +10,6 @@
 				    	
 				      &nbsp;&nbsp;&nbsp;
 				      <strong>{{storiesObject[storyKey].text | limitTo:20}}...</strong>
-				      <!-- <span><strong>편지</strong></span> -->
 				    </div>
 				  </header>
         </fa-surface>
@@ -24,7 +23,6 @@
 		  			<fa-surface fa-pipe-to="eventHandler">
 		  				<div id="scroll-content-letter-detail">
 		  					
-	  						<!-- author -->
 	  						<div class="media" style="margin-left:10px;">
 								  <a class="media-left">
 								    <img ng-src="{{users[storiesObject[storyKey].ref_user].profile.file.url}}" style="width:48px;height:48px;"/>
@@ -33,7 +31,6 @@
 								    <h5 class="media-heading">
 								    	<a>{{users[storiesObject[storyKey].ref_user].profile.name}}</a>
 								    	<span class="pull-right" style="padding-right:10px;" ng-if="storiesObject[storyKey].ref_user == user.uid" >
-								    		<!-- <i class="fa fa-times-circle fa-2x text-danger" ng-click="removeStory(storiesObject[storyKey])" ></i> -->
 								    		<button type="button" class="btn btn-xs btn-danger" ng-click="removeStory(storiesObject[storyKey])">삭제</button>
 								    	</span>
 								    </h5> 
@@ -41,12 +38,11 @@
 								  </div>
 								</div>
 								<br/>
-								<!-- content -->
-	  						<!-- <p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text | limitTo:50}} <a>More..</a></p> -->
-	  						<p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text}}</p>
+								
+								<p style="margin-left:10px;margin-right:10px;">{{storiesObject[storyKey].text}}</p>
 	  						<img ng-if="storiesObject[storyKey].file" ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="img-responsive img-center"> 
 	  						<br/>
-	  						<!-- comment list-->
+	  						
 	  						<div ng-repeat="(commentKey, comment) in commentsObject[storyKey]">
 	  							<div class="media" style="margin-left:10px;margin-right:10px;margin-bottom:5px;">
 									  <a class="media-left">
@@ -65,16 +61,7 @@
 									  </div>
 									</div>
 			         	</div>
-			         	<!-- new comment -->
-								<!-- <form ng-if="!isGuest" name="commentForm"ng-submit="addComment(storyKey,newComment)" novalidate style="margin-left:10px;margin-right:10px;">
-		              <textarea class="form-control" ng-model="newComment.body" placeholder="댓글을 입력하세요.." rows="2" style="resize: none;"/>
-		              <div class="btn-group btn-group-justified">
-									  <div class="btn-group">
-									    <button type="submit" class="btn btn-success">댓글 저장</button>
-									  </div>
-									</div>
-		            </form>
-	  						<br/> -->
+			         	
 	  						<hr/>
 	  						<br/>
 		  					
@@ -85,7 +72,6 @@
 			</fa-scroll-view>
 		</fa-modifier>
 	 	
-	 	<!-- new comment -->
 	 	<fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]" ng-if="!role.isGuest" >
 	    <fa-view>
 	    	<fa-surface fa-background-color="'white'">

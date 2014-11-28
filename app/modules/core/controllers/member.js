@@ -8,11 +8,8 @@
  */
 angular
 .module('core')
-.controller('MemberCtrl', function($scope,ENV,$firebase,$state,$famous,Composite,Memorial, User, Member, Auth, Util){
+.controller('MemberCtrl', function($scope,ENV,$firebase,$state,Composite,Memorial, User, Member, Auth, Util){
   $scope.hostUrl = ENV.HOST;
-
-  var EventHandler = $famous['famous/core/EventHandler'];
-  $scope.eventHandler = new EventHandler();
 
   // inviteUrl 처리
   // $scope.$watch( function(){ return Memorial.getInviteUrl();}, function(newValue){
@@ -58,23 +55,6 @@ angular
       console.log(error);
     })
   };
-
-  // for scroll view test
-  $scope.scrollContentHeight = {};
-
-  $scope.$on('$viewContentLoaded', function(){
-    $famous.find('fa-scroll-view')[0].renderNode.sync.on('start', function(event) {
-      var scrollContent = angular.element('[id^=scroll-content]');
-
-      angular.forEach(scrollContent, function(value, key) {
-        $scope.scrollContentHeight[value.id] = value.clientHeight;
-      });
-    });
-  });
-
-  $scope.getScrollContentHeight = function(id) {
-    return $scope.scrollContentHeight[id];
-  }
 
   $scope.getWaitingsCnt = function(){
     return Util.objectSize($scope.waitings);

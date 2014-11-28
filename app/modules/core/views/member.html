@@ -12,20 +12,12 @@
 		  	<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined, getScrollContentHeight('scroll-content-member')]">
 	  			<fa-surface fa-pipe-to="eventHandler">
 		  			<div id="scroll-content-member">
-		  				<!-- 초대하기 -->
-		  				<!-- <div class="block-title">
-				      	<h5>초대하기</h4>
-					    </div>
-					    <div class="alert alert-success">
-					     <h5><i class="fa fa-envelope-o"></i> 주소 - <strong>{{inviteUrl}}</strong></h4>
-					     초대하고 싶으신 분에게 위의 URL을 알려주세요.
-					    </div> -->
-					    <!-- 초대하기 -->
+		  				
 							<div class="block-title" ng-if="getWaitingsCnt()>0">
 					      <h5>가입 승인 대기 <span class="badge"> {{getWaitingsCnt()}}</span></h4>
 					    </div>
-		  				<!--- member profile -->
-							<div class="media" style="margin-left:10px;margin-right:10px;" ng-repeat="(uid, member) in waitings">
+		  				
+		  				<div class="media" style="margin-left:10px;margin-right:10px;" ng-repeat="(uid, member) in waitings">
 						  	<div class="media-left" >
 		      				<img ng-src="{{users[uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
 		      			</div>
@@ -41,8 +33,8 @@
 		      	  	<div class="block-title">
 					      	<h5>멤버 <span class="badge"> {{getMembersCnt() + 1}}</span></h4>
 					    	</div>
-			  				<!--- leader profile -->
-								<div class="media">
+			  				
+			  				<div class="media">
 				  				<div class="media-left">
 						  	 		<img ng-src="{{users[leader.uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
 						  	 	</div>
@@ -54,8 +46,8 @@
 								  </div>
 								</div>
 
-			  				<!--- member profile -->
-								<div class="media" ng-repeat="(uid, member) in members">
+			  				
+			  				<div class="media" ng-repeat="(uid, member) in members">
 							  	<div class="media-left">
 			      				<img ng-src="{{users[uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
 			      			</div>
@@ -67,7 +59,7 @@
 				          	<button ng-if="uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, true)">탈퇴하기</button>
 				          </div>
 			        	</div>
-			        </div> <!-- member -->
+			        </div> 
 			      </div>
 		  		</fa-surface>
 		  	</fa-modifier>
