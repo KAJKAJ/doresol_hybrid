@@ -1,40 +1,16 @@
-<!-- <fa-header-footer-layout>
-    <fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]">
-	    <fa-view>
-	      <fa-surface>
-	      	  <div ng-include="'modules/core/views/navbar.html'"></div>
-        </fa-surface>
-	    </fa-view>
-    </fa-modifier>
-
-    
-		<fa-modifier fa-size="[undefined, undefined]" fa-translate="[0, 0, 0]">
-		  <fa-scroll-view fa-pipe-from="eventHandler">
-		  	<fa-view fa-index="0" > 
-					<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[500, 500]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
-						<fa-image-surface fa-image-url="{{hostUrl + memorial.file.url}}" fa-pipe-to="eventHandler">
-					  </fa-image-surface>
-					</fa-modifier>
-					<fa-modifier ng-if="!memorial.public&&role.isGuest">
-						<fa-surface >
-					  	<div ng-include="'modules/core/views/block.html'"></div>
-					  </fa-surface>
-					</fa-modifier>
-				</fa-view>
-				<fa-view fa-index="1" ng-if="memorial.public||!role.isGuest"> 
-					<fa-modifier >
-						<fa-surface fa-pipe-to="eventHandler">
-							<ul class="list-group">
-							  <li class="list-group-item">이름: {{memorial.name}}</li>
-							  <li class="list-group-item">태어나신 날: {{memorial.dateOfBirth}}</li>
-							  <li class="list-group-item">돌아가신 날: {{memorial.dateOfDeath}}</li>
-							  <li class="list-group-item">{{memorial.description}}</li>
-							</ul>
-						</fa-surface>
-					</fa-modifier>
-				</fa-view>
-			</fa-scroll-view>
-		</fa-modifier>
-</fa-header-footer-layout> -->
-
-profile
+<div class="scrollable">
+  <div class="scrollable-content">
+  	<div ng-if="memorial.public||!role.isGuest">
+  		<img ng-src="{{hostUrl + memorial.file.url}}" class="img-responsive img-center"></img>
+  		<ul class="list-group">
+			  <li class="list-group-item">이름: {{memorial.name}}</li>
+			  <li class="list-group-item">태어나신 날: {{memorial.dateOfBirth}}</li>
+			  <li class="list-group-item">돌아가신 날: {{memorial.dateOfDeath}}</li>
+			  <li class="list-group-item">{{memorial.description}}</li>
+			</ul>
+  	</div>
+  	<div ng-if="!memorial.public&&role.isGuest">
+  		<div ng-include="'modules/core/views/block.html'"></div>
+  	</div>
+  </div>
+</div>

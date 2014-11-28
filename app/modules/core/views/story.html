@@ -47,15 +47,26 @@
 <!-- <div ng-include="'modules/core/views/sidebar.html'"></div> -->
 
 
-
-<!-- 
-
-  <div class="scrollable">
-	  <div class="scrollable-content">
-	  	<div ng-repeat="story in storiesObject | limitTo:10">
-	  		<img ng-src="{{hostUrl + story.file.url}}"></img>
-	  	</div>
-	</div> -->
+<div class="scrollable">
+  <div class="scrollable-content">
+  	<div ng-if="memorial.public||!role.isGuest">
+  		<div ng-repeat="story in storiesObject" ng-click="goToDetail(story.$id)">
+  			<img ng-src="{{hostUrl + story.file.url}}" class="img-responsive img-center"></img>
+  			<div>
+					{{story.text.headline}}
+				</div>
+				<div class="pull-right" style="padding-right:20px;">
+					<button class="btn btn-xs btn-success" type="button">
+					  댓글 <span class="badge">{{objectSize(story.comments)}}</span>
+					</button>
+				</div>
+  		</div>
+  	</div>
+  	<div ng-if="!memorial.public&&role.isGuest">
+  		<div ng-include="'modules/core/views/block.html'"></div>
+  	</div>
+  </div>
+</div>
 
 
 

@@ -34,6 +34,13 @@ a:focus,
     border-bottom: 1px solid #eaedf1;
 }*/
 
+.img-center{
+  margin:0 auto;
+}
+
+.app{
+  background-color: white;
+}
 
 #lightbulb {
   font-size: 100px;
