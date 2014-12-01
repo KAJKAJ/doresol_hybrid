@@ -200,3 +200,14 @@ pre {
 input.scrollable-header {
   border-bottom: 3px solid #ccc;
 }
+
+/* custom */
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+  color: #ffffff;
+  background-color: #27ae60;
+  border-color: #249e57;
+}
+
+.navbar-app{
+  color: #27ae60;
+}
